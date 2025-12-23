@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algorithms | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --glass:rgba(255,255,255,0.06);
+  --card:#0b1229;
+  --neon1:#00f6ff;
+  --neon2:#9f7aea;
+  --neon3:#22d3ee;
+  --text:#e5e7eb;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159,122,234,.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,246,255,.15), transparent 40%),
+    linear-gradient(180deg,#020617,var(--bg));
+  color:var(--text);
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:18px 50px;
+  background:rgba(5,8,22,.8);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* HERO */
+.hero{
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:float 4s ease-in-out infinite;
+}
+
+.hero p{
+  margin-top:15px;
+  opacity:.85;
+  max-width:750px;
+}
+
+/* SECTIONS */
+section{
+  padding:80px 8%;
+}
+
+section h2{
+  text-align:center;
+  margin-bottom:45px;
+  color:var(--neon3);
+  text-shadow:0 0 25px rgba(34,211,238,.6);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+/* CARD */
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border-radius:22px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  transition:.5s cubic-bezier(.22,1,.36,1);
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  background:linear-gradient(120deg,transparent,var(--neon1),transparent);
+  opacity:0;
+  transition:.5s;
+}
+
+.card:hover::before{opacity:1}
+
+.card:hover{
+  transform:translateY(-14px) scale(1.05);
+  box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 40px rgba(0,246,255,.4);
+}
+
+.card h3{
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:1.25rem;
+  margin-bottom:12px;
+}
+
+.card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.85;
+}
+
+/* LIST */
+ul{
+  margin-top:10px;
+  padding-left:20px;
+  line-height:1.7;
+  font-size:.9rem;
+}
+
+/* Q&A SECTION */
+.qa-section {
+  margin-top: 30px;
+  padding: 25px;
+  background: rgba(11, 18, 41, 0.7);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.qa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.qa-header h3 {
+  background:linear-gradient(90deg,var(--neon2),var(--neon3));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size: 1.4rem;
+}
+
+.close-qa {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--neon3);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.close-qa:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.question-item {
+  background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(.22,1,.36,1);
+  cursor: pointer;
+}
+
+.question-item:hover {
+  border-color: var(--neon1);
+  transform: translateY(-4px);
+}
+
+.question-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-header h4 {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #f1f5f9;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  color: var(--neon3);
+}
+
+.answer-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-top: 1px solid transparent;
+}
+
+.answer-content.active {
+  max-height: 500px;
+  padding: 20px;
+  border-top: 1px solid rgba(34, 211, 238, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.answer-content p {
+  line-height: 1.7;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+.answer-content ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.answer-content li {
+  margin-bottom: 8px;
+}
+
+.question-item.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  font-size:.85rem;
+}
+
+/* ANIMATIONS */
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+  100%{transform:translateY(0)}
+}
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:2.2rem}
+  section{padding:60px 6%}
+  .qa-header h3 { font-size: 1.2rem; }
+  .question-header h4 { font-size: 0.95rem; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">BTech LMS</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Algorithms</h1>
+    <p>An algorithm is a finite, well-defined sequence of steps used to solve a problem efficiently and correctly.</p>
+  </div>
+</div>
+
+<!-- BASICS -->
+<section>
+<h2>Algorithm Basics</h2>
+<div class="grid">
+
+<div class="card">
+<h3>What is an Algorithm?</h3>
+<p>An algorithm is a step-by-step procedure designed to perform a specific task or solve a computational problem.</p>
+</div>
+
+<div class="card">
+<h3>Characteristics</h3>
+<ul>
+<li>Input & Output</li>
+<li>Definiteness</li>
+<li>Finiteness</li>
+<li>Effectiveness</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Types</h3>
+<ul>
+<li>Brute Force</li>
+<li>Recursive</li>
+<li>Iterative</li>
+<li>Randomized</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- SEARCHING -->
+<section>
+<h2>Searching Algorithms</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Linear Search</h3>
+<p>Searches each element sequentially until the target value is found.</p>
+<ul>
+<li>Simple</li>
+<li>O(n)</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Binary Search</h3>
+<p>Divides a sorted array into halves to locate the element efficiently.</p>
+<ul>
+<li>Requires sorted data</li>
+<li>O(log n)</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- Q&A SECTION - Added after content -->
+<div class="qa-section slide-in">
+  <div class="qa-header">
+    <h3>Algorithms Practice Questions</h3>
+    <button class="close-qa" id="closeQa">×</button>
+  </div>
+  <div class="qa-list" id="qaList">
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What is the main difference between linear search and binary search?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Linear Search:</strong> Checks each element sequentially from start to end. Works on both sorted and unsorted arrays. Time complexity: O(n).</p>
+        <p><strong>Binary Search:</strong> Repeatedly divides the search interval in half. Requires the array to be sorted. Time complexity: O(log n).</p>
+        <p>Binary search is significantly faster for large datasets but requires sorted data, while linear search works on any dataset but is slower.</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Explain time complexity O(n log n) with an example.</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>O(n log n)</strong> time complexity means the running time increases proportionally to n multiplied by the logarithm of n.</p>
+        <p><strong>Example:</strong> Merge Sort and Heap Sort algorithms have O(n log n) time complexity.</p>
+        <ul>
+          <li>Merge Sort divides the array into halves (log n divisions) and merges them back (n operations per level)</li>
+          <li>For an array of 1,024 elements: n log n = 1,024 × 10 = 10,240 operations (approximately)</li>
+        </ul>
+        <p>This complexity is considered efficient and is often the best achievable for comparison-based sorting algorithms.</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What is the difference between greedy algorithms and dynamic programming?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Greedy Algorithms:</strong></p>
+        <ul>
+          <li>Make the locally optimal choice at each step</li>
+          <li>Do not reconsider previous choices</li>
+          <li>Faster but may not produce optimal solution for all problems</li>
+          <li>Examples: Dijkstra's algorithm, Huffman coding</li>
+        </ul>
+        
+        <p><strong>Dynamic Programming:</strong></p>
+        <ul>
+          <li>Solves problems by combining solutions to overlapping subproblems</li>
+          <li>Stores results of subproblems to avoid recomputation</li>
+          <li>Guarantees optimal solution for problems with optimal substructure</li>
+          <li>Examples: Fibonacci sequence, Knapsack problem</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Why is quicksort considered efficient despite having O(n²) worst-case time complexity?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p>QuickSort is considered efficient for several reasons:</p>
+        <ul>
+          <li><strong>Average case performance:</strong> O(n log n) in practice</li>
+          <li><strong>In-place sorting:</strong> Requires only O(log n) additional memory</li>
+          <li><strong>Cache efficiency:</strong> Good locality of reference</li>
+          <li><strong>Practical performance:</strong> Often faster than other O(n log n) algorithms due to smaller constant factors</li>
+        </ul>
+        <p>The worst-case O(n²) occurs only when the pivot selection is poor (e.g., already sorted data with first/last element as pivot). This can be mitigated by:</p>
+        <ul>
+          <li>Randomized pivot selection</li>
+          <li>Median-of-three pivot selection</li>
+          <li>Hybrid approaches (switch to heapsort for small subarrays)</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What are the key characteristics of a good algorithm?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p>A good algorithm should possess these characteristics:</p>
+        <ul>
+          <li><strong>Correctness:</strong> Produces the correct output for all valid inputs</li>
+          <li><strong>Efficiency:</strong> Has reasonable time and space complexity</li>
+          <li><strong>Clarity:</strong> Easy to understand and implement</li>
+          <li><strong>Robustness:</strong> Handles edge cases and invalid inputs gracefully</li>
+          <li><strong>Scalability:</strong> Performs well as input size increases</li>
+          <li><strong>Optimality:</strong> Achieves the best possible complexity for the problem when applicable</li>
+        </ul>
+        <p>Additionally, practical considerations include:</p>
+        <ul>
+          <li>Memory usage and cache efficiency</li>
+          <li>Parallelization potential</li>
+          <li>Adaptability to different data distributions</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- SORTING -->
+<section>
+<h2>Sorting Algorithms</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Bubble Sort</h3>
+<p>Repeatedly swaps adjacent elements if they are in the wrong order.</p>
+<ul><li>O(n²)</li></ul>
+</div>
+
+<div class="card">
+<h3>Selection Sort</h3>
+<p>Selects the minimum element and places it at the correct position.</p>
+<ul><li>O(n²)</li></ul>
+</div>
+
+<div class="card">
+<h3>Insertion Sort</h3>
+<p>Builds the sorted list one element at a time.</p>
+<ul><li>O(n²)</li></ul>
+</div>
+
+<div class="card">
+<h3>Merge Sort</h3>
+<p>Divide-and-conquer algorithm that recursively sorts subarrays.</p>
+<ul><li>O(n log n)</li></ul>
+</div>
+
+<div class="card">
+<h3>Quick Sort</h3>
+<p>Uses a pivot element to partition the array.</p>
+<ul><li>Average O(n log n)</li></ul>
+</div>
+
+</div>
+</section>
+
+<!-- DESIGN STRATEGIES -->
+<section>
+<h2>Algorithm Design Strategies</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Divide & Conquer</h3>
+<p>Breaks a problem into smaller subproblems, solves them independently.</p>
+</div>
+
+<div class="card">
+<h3>Greedy Method</h3>
+<p>Makes the locally optimal choice at each step.</p>
+</div>
+
+<div class="card">
+<h3>Dynamic Programming</h3>
+<p>Solves problems by storing solutions of overlapping subproblems.</p>
+</div>
+
+<div class="card">
+<h3>Backtracking</h3>
+<p>Explores all possible solutions recursively.</p>
+</div>
+
+</div>
+</section>
+
+<!-- COMPLEXITY -->
+<section>
+<h2>Complexity Analysis</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Time Complexity</h3>
+<p>Measures execution time relative to input size.</p>
+<ul>
+<li>O(1)</li>
+<li>O(log n)</li>
+<li>O(n)</li>
+<li>O(n²)</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Space Complexity</h3>
+<p>Measures memory usage of an algorithm.</p>
+</div>
+
+<div class="card">
+<h3>Best / Average / Worst Case</h3>
+<p>Represents different performance scenarios.</p>
+</div>
+
+</div>
+</section>
+
+<footer>
+© BTech LMS • Algorithms • Advanced Academic UI
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all question items
+  const questionItems = document.querySelectorAll('.question-item');
+  const closeQaBtn = document.getElementById('closeQa');
+  const qaSection = document.querySelector('.qa-section');
+  
+  // Add click event to each question
+  questionItems.forEach(item => {
+    const questionHeader = item.querySelector('.question-header');
+    const answerContent = item.querySelector('.answer-content');
+    
+    questionHeader.addEventListener('click', () => {
+      // Toggle active class on the question item
+      item.classList.toggle('active');
+      
+      // Toggle active class on the answer content
+      answerContent.classList.toggle('active');
+      
+      // Close other open answers (optional - for accordion behavior)
+      // questionItems.forEach(otherItem => {
+      //   if (otherItem !== item && otherItem.classList.contains('active')) {
+      //     otherItem.classList.remove('active');
+      //     otherItem.querySelector('.answer-content').classList.remove('active');
+      //   }
+      // });
+    });
+  });
+  
+  // Close Q&A section functionality
+  closeQaBtn.addEventListener('click', () => {
+    qaSection.style.opacity = '0';
+    qaSection.style.transform = 'translateY(30px)';
+    qaSection.style.height = '0';
+    qaSection.style.padding = '0';
+    qaSection.style.margin = '0';
+    qaSection.style.overflow = 'hidden';
+    
+    // Remove after animation
+    setTimeout(() => {
+      qaSection.style.display = 'none';
+    }, 500);
+  });
+  
+  // Show Q&A section with animation when page loads
+  setTimeout(() => {
+    qaSection.classList.add('slide-in');
+  }, 300);
+});
+</script>
+
+</body>
+</html>

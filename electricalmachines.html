@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrical Machines | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050816;
+  --card:#0b1229;
+  --neon:#00f6ff;
+  --purple:#9f7aea;
+  --text:#e5e7eb;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top,#0a0f2c,var(--bg));
+  color:var(--text);
+}
+
+/* ---------- NAV ---------- */
+nav{
+  padding:18px 40px;
+  background:rgba(5,8,22,.85);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  color:var(--neon);
+  text-shadow:0 0 15px var(--neon);
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  padding:70px 8% 40px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:2.6rem;
+  color:var(--neon);
+  text-shadow:0 0 25px var(--neon);
+}
+
+.hero p{
+  margin-top:12px;
+  color:#cbd5f5;
+}
+
+/* ---------- CONTENT ---------- */
+section{
+  padding:40px 8%;
+}
+
+.section-title{
+  margin-bottom:25px;
+  color:var(--purple);
+  font-size:1.4rem;
+}
+
+/* ---------- GRID ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:var(--card);
+  padding:28px;
+  border-radius:18px;
+  border:1px solid rgba(0,246,255,.15);
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 30px rgba(0,246,255,.4);
+}
+
+.card h3{
+  color:var(--neon);
+  margin-bottom:10px;
+}
+
+.card ul{
+  list-style:none;
+}
+
+.card ul li{
+  padding:6px 0;
+  color:#cbd5f5;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;
+  padding:25px;
+  font-size:.9rem;
+  color:#9aa4d1;
+}
+
+@media(max-width:768px){
+  .hero h1{
+    font-size:2.1rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">BTech LMS</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>★ Electrical Machines</h1>
+  <p>Notes • Videos • Quiz</p>
+</div>
+
+<!-- NOTES -->
+<section>
+  <div class="section-title">📘 Notes</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Unit 1: Transformers</h3>
+      <ul>
+        <li>✔ Principle of Operation</li>
+        <li>✔ EMF Equation</li>
+        <li>✔ Losses & Efficiency</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Unit 2: DC Machines</h3>
+      <ul>
+        <li>✔ Construction</li>
+        <li>✔ Characteristics</li>
+        <li>✔ Speed Control</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section>
+  <div class="section-title">🎥 Videos</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Transformer Basics</h3>
+      <ul>
+        <li>▶ Working Principle</li>
+        <li>▶ Practical Examples</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>DC Motor Operation</h3>
+      <ul>
+        <li>▶ Torque Equation</li>
+        <li>▶ Applications</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section>
+  <div class="section-title">📝 Quiz</div>
+  <div class="grid">
+    <div class="card">
+      <h3>MCQ Test – Level 1</h3>
+      <ul>
+        <li>10 Questions</li>
+        <li>Time: 10 Minutes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>MCQ Test – Level 2</h3>
+      <ul>
+        <li>Numerical Problems</li>
+        <li>Previous Year Questions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 BTech LMS | Electrical Engineering
+</footer>
+
+</body>
+</html>

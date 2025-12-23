@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signals & Systems | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --card:#0b1229;
+  --glass:rgba(255,255,255,0.06);
+  --neon1:#00f6ff;
+  --neon2:#9f7aea;
+  --neon3:#22d3ee;
+  --text:#e5e7eb;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{
+  background:radial-gradient(circle at 20% 20%,rgba(159,122,234,.18),transparent 40%),
+             radial-gradient(circle at 80% 30%,rgba(0,246,255,.15),transparent 40%),
+             linear-gradient(180deg,#020617,var(--bg));
+  color:var(--text);
+}
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:18px 50px;
+  background:rgba(5,8,22,.8);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero{
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:float 4s ease-in-out infinite;
+}
+.hero p{
+  margin-top:15px;
+  opacity:.85;
+  max-width:750px;
+  font-size:1.1rem;
+}
+section{
+  padding:80px 8%;
+}
+section h2{
+  text-align:center;
+  margin-bottom:45px;
+  color:var(--neon3);
+  text-shadow:0 0 25px rgba(34,211,238,.6);
+  font-size:2rem;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border-radius:22px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  transition:.5s cubic-bezier(.22,1,.36,1);
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  background:linear-gradient(120deg,transparent,var(--neon1),transparent);
+  opacity:0;
+  transition:.5s;
+}
+.card:hover::before{opacity:1}
+.card:hover{
+  transform:translateY(-12px) scale(1.03);
+  box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 40px rgba(0,246,255,.4);
+}
+.card h3{
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:1.3rem;
+  margin-bottom:15px;
+}
+.card p{
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.85;
+  margin-bottom:15px;
+}
+.card ul{
+  margin-top:10px;
+  padding-left:20px;
+  line-height:1.7;
+  font-size:.9rem;
+}
+.btn-group{
+  margin-top:15px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:10px 20px;
+  border-radius:30px;
+  border:1px solid rgba(0,246,255,.4);
+  background:none;
+  color:var(--neon1);
+  cursor:pointer;
+  transition:.3s;
+  font-weight:500;
+  font-size:.9rem;
+}
+.btn:hover{
+  background:var(--neon1);
+  color:black;
+  box-shadow:0 0 20px var(--neon1);
+  transform:translateY(-2px);
+}
+
+/* Q&A SECTION */
+.qa-section {
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(11, 18, 41, 0.7);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  max-width: 1200px;
+}
+
+.qa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.qa-header h3 {
+  background:linear-gradient(90deg,var(--neon2),var(--neon3));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.close-qa {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--neon3);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.close-qa:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.question-item {
+  background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(.22,1,.36,1);
+  cursor: pointer;
+}
+
+.question-item:hover {
+  border-color: var(--neon1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.question-header {
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-header h4 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #f1f5f9;
+  flex: 1;
+}
+
+.arrow {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  color: var(--neon3);
+  margin-left: 15px;
+  flex-shrink: 0;
+}
+
+.answer-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 22px;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-top: 1px solid transparent;
+}
+
+.answer-content.active {
+  max-height: 600px;
+  padding: 25px;
+  border-top: 1px solid rgba(34, 211, 238, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.answer-content p {
+  line-height: 1.7;
+  color: #cbd5e1;
+  margin-bottom: 12px;
+}
+
+.answer-content ul {
+  margin-top: 12px;
+  padding-left: 22px;
+}
+
+.answer-content li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.answer-content strong {
+  color: var(--neon3);
+}
+
+.question-item.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* ANIMATIONS */
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+  100%{transform:translateY(0)}
+}
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* FORMULAS STYLING */
+.formula {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  font-family: 'Courier New', monospace;
+  border-left: 3px solid var(--neon1);
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  font-size:.85rem;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:2.2rem}
+  section{padding:60px 6%}
+  .qa-section { padding: 20px; margin: 30px 6%; }
+  .qa-header h3 { font-size: 1.2rem; }
+  .question-header h4 { font-size: 0.95rem; }
+  .btn-group { flex-direction: column; }
+  .btn { width: 100%; text-align: center; }
+  section h2 { font-size: 1.6rem; }
+}
+</style>
+</head>
+
+<body>
+
+<nav><div class="logo">BTech LMS</div></nav>
+
+<div class="hero">
+  <div>
+    <h1>Signals & Systems</h1>
+    <p>Analysis and representation of signals and systems in time and frequency domains. Explore continuous and discrete signals, transforms, and system properties.</p>
+  </div>
+</div>
+
+<section>
+<h2>Learning Resources</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Notes & Theory</h3>
+<ul>
+<li>Continuous & Discrete Signals</li>
+<li>System Properties: Linearity, Time-Invariance</li>
+<li>Convolution: Theory & Applications</li>
+<li>Fourier Series & Transform</li>
+<li>Laplace Transform</li>
+<li>Z-Transform</li>
+<li>Sampling Theorem</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Video Lectures</h3>
+<p>Concept explanation & problem solving tutorials</p>
+<div class="btn-group">
+<button class="btn">Time Domain Analysis</button>
+<button class="btn">Frequency Domain</button>
+<button class="btn">Transform Methods</button>
+<button class="btn">Filter Design</button>
+</div>
+</div>
+
+<div class="card">
+<h3>Practice & Assessment</h3>
+<p>Test your understanding with interactive content</p>
+<div class="btn-group">
+<button class="btn">Start Quiz</button>
+<button class="btn">Practice Problems</button>
+<button class="btn">Mock Tests</button>
+<button class="btn">Solved Examples</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- Q&A SECTION -->
+<div class="qa-section slide-in">
+  <div class="qa-header">
+    <h3>Signals & Systems Practice Questions</h3>
+    <button class="close-qa" id="closeQa">×</button>
+  </div>
+  <div class="qa-list" id="qaList">
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What is the difference between continuous-time and discrete-time signals?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Continuous-Time Signals:</strong></p>
+        <ul>
+          <li>Defined for all values of time in a continuous interval</li>
+          <li>Represented as x(t) where t is a continuous variable</li>
+          <li>Examples: Analog audio signals, temperature readings over time</li>
+          <li>Can take any amplitude value within a range</li>
+        </ul>
+        
+        <p><strong>Discrete-Time Signals:</strong></p>
+        <ul>
+          <li>Defined only at discrete instants of time</li>
+          <li>Represented as x[n] where n is an integer index</li>
+          <li>Examples: Digital audio samples, monthly sales data</li>
+          <li>Amplitude may be continuous or quantized</li>
+        </ul>
+        
+        <p><strong>Key Relationship:</strong> Discrete-time signals are often obtained by sampling continuous-time signals at regular intervals (t = nT).</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Explain linearity and time-invariance properties of systems</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Linearity:</strong> A system is linear if it satisfies both:</p>
+        <div class="formula">
+          <p>1. Additivity: T{x₁(t) + x₂(t)} = T{x₁(t)} + T{x₂(t)}</p>
+          <p>2. Homogeneity: T{ax(t)} = aT{x(t)}</p>
+        </div>
+        <p>Where T{•} represents the system transformation, and a is any constant.</p>
+        
+        <p><strong>Time-Invariance:</strong> A system is time-invariant if a time shift in the input causes an identical time shift in the output:</p>
+        <div class="formula">
+          <p>If y(t) = T{x(t)}, then T{x(t - t₀)} = y(t - t₀)</p>
+        </div>
+        
+        <p><strong>Significance:</strong></p>
+        <ul>
+          <li><strong>LTI Systems:</strong> Systems that are both linear and time-invariant</li>
+          <li>Can be completely characterized by their impulse response</li>
+          <li>Output can be computed using convolution: y(t) = x(t) * h(t)</li>
+          <li>Analysis is simplified in frequency domain using Fourier/Laplace transforms</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What is the significance of Fourier Transform in signal analysis?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p>The Fourier Transform converts a signal from time domain to frequency domain, revealing its frequency components.</p>
+        
+        <div class="formula">
+          <p>Fourier Transform: X(ω) = ∫<sub>-∞</sub><sup>∞</sup> x(t) e<sup>-jωt</sup> dt</p>
+          <p>Inverse Fourier Transform: x(t) = (1/2π) ∫<sub>-∞</sub><sup>∞</sup> X(ω) e<sup>jωt</sup> dω</p>
+        </div>
+        
+        <p><strong>Significance:</strong></p>
+        <ul>
+          <li><strong>Spectral Analysis:</strong> Identifies frequency components in a signal</li>
+          <li><strong>Filter Design:</strong> Essential for designing frequency-selective filters</li>
+          <li><strong>Modulation/Demodulation:</strong> Basis for communication systems</li>
+          <li><strong>Convolution Theorem:</strong> Convolution in time domain = Multiplication in frequency domain</li>
+          <li><strong>Parseval's Theorem:</strong> Energy conservation between time and frequency domains</li>
+        </ul>
+        
+        <p><strong>Applications:</strong> Audio processing, image compression (JPEG), speech recognition, wireless communications, and medical imaging (MRI).</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Explain the Sampling Theorem and its importance in digital signal processing</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Sampling Theorem (Nyquist-Shannon Theorem):</strong></p>
+        <p>A continuous-time signal with finite bandwidth (B Hz) can be perfectly reconstructed from its samples if the sampling frequency (f<sub>s</sub>) is at least twice the maximum frequency component (2B).</p>
+        
+        <div class="formula">
+          <p>Condition: f<sub>s</sub> ≥ 2B</p>
+          <p>Where: f<sub>s</sub> = Sampling frequency, B = Signal bandwidth</p>
+        </div>
+        
+        <p><strong>Key Concepts:</strong></p>
+        <ul>
+          <li><strong>Nyquist Rate:</strong> 2B samples/second (minimum sampling rate)</li>
+          <li><strong>Nyquist Frequency:</strong> B Hz (maximum representable frequency)</li>
+          <li><strong>Aliasing:</strong> Occurs when f<sub>s</sub> < 2B, causing high frequencies to appear as low frequencies</li>
+          <li><strong>Anti-aliasing Filter:</strong> Low-pass filter used before sampling to limit bandwidth to ≤ f<sub>s</sub>/2</li>
+        </ul>
+        
+        <p><strong>Importance in DSP:</strong></p>
+        <ul>
+          <li>Enables analog-to-digital conversion without information loss</li>
+          <li>Foundation for all digital communication and audio systems</li>
+          <li>Essential for CD audio (44.1 kHz sampling for 20 kHz audio)</li>
+          <li>Basis for digital image and video processing</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Compare Laplace Transform and Z-Transform</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Laplace Transform:</strong></p>
+        <div class="formula">
+          <p>X(s) = ∫<sub>0</sub><sup>∞</sup> x(t) e<sup>-st</sup> dt, where s = σ + jω</p>
+        </div>
+        <ul>
+          <li>Used for continuous-time signals and systems</li>
+          <li>Transforms differential equations to algebraic equations</li>
+          <li>Region of Convergence (ROC) is crucial for system stability analysis</li>
+          <li>Applications: Control systems, circuit analysis, continuous-time filters</li>
+        </ul>
+        
+        <p><strong>Z-Transform:</strong></p>
+        <div class="formula">
+          <p>X(z) = Σ<sub>n=-∞</sub><sup>∞</sup> x[n] z<sup>-n</sup>, where z = re<sup>jω</sup></p>
+        </div>
+        <ul>
+          <li>Used for discrete-time signals and systems</li>
+          <li>Transforms difference equations to algebraic equations</li>
+          <li>ROC determines causality and stability of discrete systems</li>
+          <li>Applications: Digital filter design, discrete-time control systems</li>
+        </ul>
+        
+        <p><strong>Relationship:</strong> Z-transform is the discrete-time counterpart of Laplace transform, with z = e<sup>sT</sup> where T is sampling period.</p>
+        
+        <p><strong>Fourier Transform Connection:</strong></p>
+        <ul>
+          <li>Fourier Transform = Laplace Transform evaluated on imaginary axis (s = jω)</li>
+          <li>Discrete-Time Fourier Transform (DTFT) = Z-transform evaluated on unit circle (z = e<sup>jω</sup>)</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What is convolution and how is it used in linear systems?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Convolution</strong> is a mathematical operation that computes the output of a linear time-invariant (LTI) system given its input and impulse response.</p>
+        
+        <div class="formula">
+          <p><strong>Continuous-Time:</strong> y(t) = ∫<sub>-∞</sub><sup>∞</sup> x(τ) h(t - τ) dτ = x(t) * h(t)</p>
+          <p><strong>Discrete-Time:</strong> y[n] = Σ<sub>k=-∞</sub><sup>∞</sup> x[k] h[n - k] = x[n] * h[n]</p>
+        </div>
+        
+        <p><strong>Properties of Convolution:</strong></p>
+        <ul>
+          <li><strong>Commutative:</strong> x(t) * h(t) = h(t) * x(t)</li>
+          <li><strong>Associative:</strong> [x(t) * h₁(t)] * h₂(t) = x(t) * [h₁(t) * h₂(t)]</li>
+          <li><strong>Distributive:</strong> x(t) * [h₁(t) + h₂(t)] = x(t) * h₁(t) + x(t) * h₂(t)</li>
+          <li><strong>Identity:</strong> x(t) * δ(t) = x(t)</li>
+        </ul>
+        
+        <p><strong>Applications in Linear Systems:</strong></p>
+        <ul>
+          <li><strong>System Response:</strong> Output = Input convolved with Impulse Response</li>
+          <li><strong>Filtering:</strong> Convolution implements filtering operations</li>
+          <li><strong>Signal Processing:</strong> Used in smoothing, edge detection, correlation</li>
+          <li><strong>Communication:</strong> Channel modeling and equalization</li>
+        </ul>
+        
+        <p><strong>Convolution Theorem:</strong> Convolution in time domain equals multiplication in frequency domain, making frequency-domain analysis more efficient.</p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<footer>© BTech LMS • Signals & Systems • Interactive Learning Platform</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all question items
+  const questionItems = document.querySelectorAll('.question-item');
+  const closeQaBtn = document.getElementById('closeQa');
+  const qaSection = document.querySelector('.qa-section');
+  
+  // Add click event to each question
+  questionItems.forEach(item => {
+    const questionHeader = item.querySelector('.question-header');
+    const answerContent = item.querySelector('.answer-content');
+    
+    questionHeader.addEventListener('click', () => {
+      // Toggle active class on the question item
+      item.classList.toggle('active');
+      
+      // Toggle active class on the answer content
+      answerContent.classList.toggle('active');
+    });
+  });
+  
+  // Close Q&A section functionality
+  closeQaBtn.addEventListener('click', () => {
+    qaSection.style.opacity = '0';
+    qaSection.style.transform = 'translateY(30px)';
+    qaSection.style.height = '0';
+    qaSection.style.padding = '0';
+    qaSection.style.margin = '0';
+    qaSection.style.overflow = 'hidden';
+    
+    // Remove after animation
+    setTimeout(() => {
+      qaSection.style.display = 'none';
+    }, 500);
+  });
+  
+  // Show Q&A section with animation when page loads
+  setTimeout(() => {
+    qaSection.classList.add('slide-in');
+  }, 300);
+  
+  // Add interactivity to buttons
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      const btnText = this.textContent;
+      // In a real application, this would navigate to specific content
+      // For now, we'll show a notification
+      const topics = {
+        'Time Domain Analysis': 'Time domain concepts including convolution and system response',
+        'Frequency Domain': 'Fourier analysis, frequency response, and spectral analysis',
+        'Transform Methods': 'Laplace, Z, and Fourier transforms with applications',
+        'Filter Design': 'Analog and digital filter design techniques',
+        'Start Quiz': 'Signals & Systems assessment quiz',
+        'Practice Problems': 'Solved examples and practice exercises',
+        'Mock Tests': 'Full-length practice tests',
+        'Solved Examples': 'Step-by-step problem solutions'
+      };
+      
+      const topic = topics[btnText] || btnText;
+      alert(`Opening ${btnText} - ${topic}`);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

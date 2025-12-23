@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VLSI | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --card:#0b1229;
+  --neon1:#00f6ff;
+  --neon2:#9f7aea;
+  --text:#e5e7eb;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{
+  background:radial-gradient(circle at 20% 20%,rgba(159,122,234,.18),transparent 40%),
+             radial-gradient(circle at 80% 30%,rgba(0,246,255,.15),transparent 40%),
+             linear-gradient(180deg,#020617,var(--bg));
+  color:var(--text);
+}
+nav{padding:18px 50px;background:rgba(5,8,22,.8);backdrop-filter:blur(14px)}
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero{
+  min-height:60vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero h1{
+  font-size:3rem;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+section{padding:70px 8%}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border-radius:22px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.12);
+  transition:.5s;
+}
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 0 40px rgba(0,246,255,.4);
+}
+.card h3{
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.btn-group{
+  margin-top:15px;
+  display:flex;
+  gap:10px;
+}
+.btn{
+  padding:8px 18px;
+  border-radius:30px;
+  border:1px solid rgba(0,246,255,.4);
+  background:none;
+  color:var(--neon1);
+  cursor:pointer;
+}
+.btn:hover{
+  background:var(--neon1);
+  color:black;
+  box-shadow:0 0 20px var(--neon1);
+}
+footer{text-align:center;padding:30px;opacity:.6}
+</style>
+</head>
+
+<body>
+
+<nav><div class="logo">BTech LMS</div></nav>
+
+<div class="hero">
+  <div>
+    <h1>VLSI</h1>
+    <p>Design and implementation of integrated circuits using CMOS technology.</p>
+  </div>
+</div>
+
+<section>
+<div class="grid">
+
+<div class="card">
+<h3>Notes</h3>
+<ul>
+<li>CMOS Fabrication</li>
+<li>Inverter Characteristics</li>
+<li>Combinational & Sequential Circuits</li>
+<li>VLSI Design Flow</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Videos</h3>
+<p>Conceptual & practical VLSI design</p>
+<div class="btn-group">
+<button class="btn">CMOS Basics</button>
+<button class="btn">Layout Design</button>
+</div>
+</div>
+
+<div class="card">
+<h3>Quiz</h3>
+<p>Check your VLSI fundamentals</p>
+<div class="btn-group">
+<button class="btn">Start Quiz</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>© BTech LMS • VLSI</footer>
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Engineering | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --card:#0b1229;
+  --glass:rgba(255,255,255,0.06);
+  --neon1:#00f6ff;
+  --neon2:#9f7aea;
+  --neon3:#22d3ee;
+  --text:#e5e7eb;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159,122,234,.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,246,255,.15), transparent 40%),
+    linear-gradient(180deg,#020617,var(--bg));
+  color:var(--text);
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:18px 50px;
+  background:rgba(5,8,22,.8);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* HERO */
+.hero{
+  min-height:70vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:float 4s infinite;
+}
+
+.hero p{
+  margin-top:15px;
+  max-width:780px;
+  opacity:.85;
+}
+
+/* SECTION */
+section{
+  padding:80px 8%;
+}
+
+section h2{
+  text-align:center;
+  margin-bottom:45px;
+  color:var(--neon3);
+  text-shadow:0 0 25px rgba(34,211,238,.6);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+/* CARD */
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border-radius:22px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  transition:.5s cubic-bezier(.22,1,.36,1);
+}
+
+.card:hover{
+  transform:translateY(-12px) scale(1.05);
+  box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 40px rgba(0,246,255,.4);
+}
+
+.card h3{
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:12px;
+}
+
+.card p{
+  font-size:.95rem;
+  opacity:.85;
+  line-height:1.6;
+}
+
+ul{
+  padding-left:20px;
+  margin-top:10px;
+  line-height:1.7;
+  font-size:.9rem;
+}
+
+/* BUTTONS */
+.btn-group{
+  margin-top:15px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.btn{
+  padding:8px 18px;
+  border-radius:30px;
+  border:1px solid rgba(0,246,255,.4);
+  background:none;
+  color:var(--neon1);
+  cursor:pointer;
+  transition:.4s;
+  font-size:.85rem;
+}
+
+.btn:hover{
+  background:var(--neon1);
+  color:black;
+  box-shadow:0 0 20px var(--neon1);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  font-size:.85rem;
+}
+
+/* ANIMATION */
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+  100%{transform:translateY(0)}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:2.2rem}
+  section{padding:60px 6%}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">BTech LMS</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Software Engineering</h1>
+    <p>Software Engineering is the systematic, disciplined, and quantifiable approach to the development, operation, and maintenance of software.</p>
+  </div>
+</div>
+
+<!-- BASICS -->
+<section>
+<h2>Software Engineering Basics</h2>
+<div class="grid">
+
+<div class="card">
+<h3>What is Software Engineering?</h3>
+<p>It is the application of engineering principles to software development to ensure reliability, efficiency, and maintainability.</p>
+</div>
+
+<div class="card">
+<h3>Software Characteristics</h3>
+<ul>
+<li>Intangible</li>
+<li>Developed, not manufactured</li>
+<li>Highly complex</li>
+<li>Maintenance intensive</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Software Types</h3>
+<ul>
+<li>System Software</li>
+<li>Application Software</li>
+<li>Embedded Software</li>
+<li>Web Applications</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- SDLC -->
+<section>
+<h2>Software Development Life Cycle (SDLC)</h2>
+<div class="grid">
+
+<div class="card">
+<h3>SDLC Phases</h3>
+<ul>
+<li>Requirement Analysis</li>
+<li>Design</li>
+<li>Implementation</li>
+<li>Testing</li>
+<li>Deployment</li>
+<li>Maintenance</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Process Models</h3>
+<ul>
+<li>Waterfall</li>
+<li>Incremental</li>
+<li>Spiral</li>
+<li>Agile</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('waterfall.html')">Waterfall</button>
+<button class="btn" onclick="openPage('agile.html')">Agile</button>
+<button class="btn" onclick="openPage('spiral.html')">Spiral</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- REQUIREMENTS -->
+<section>
+<h2>Requirements Engineering</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Requirement Types</h3>
+<ul>
+<li>Functional</li>
+<li>Non-Functional</li>
+<li>User Requirements</li>
+<li>System Requirements</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>SRS</h3>
+<p>Software Requirement Specification is a detailed description of system requirements.</p>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('srs.html')">SRS</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- DESIGN -->
+<section>
+<h2>Software Design</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Design Concepts</h3>
+<ul>
+<li>Abstraction</li>
+<li>Modularity</li>
+<li>Cohesion</li>
+<li>Coupling</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Design Models</h3>
+<ul>
+<li>Data Flow Diagram (DFD)</li>
+<li>UML Diagrams</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('uml.html')">UML</button>
+<button class="btn" onclick="openPage('dfd.html')">DFD</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- TESTING -->
+<section>
+<h2>Software Testing</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Testing Levels</h3>
+<ul>
+<li>Unit Testing</li>
+<li>Integration Testing</li>
+<li>System Testing</li>
+<li>Acceptance Testing</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Testing Techniques</h3>
+<ul>
+<li>Black Box Testing</li>
+<li>White Box Testing</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('testing.html')">Testing</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- PROJECT MANAGEMENT -->
+<section>
+<h2>Project Management</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Project Planning</h3>
+<ul>
+<li>Cost Estimation</li>
+<li>Scheduling</li>
+<li>Risk Management</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Metrics & Quality</h3>
+<ul>
+<li>LOC</li>
+<li>Function Points</li>
+<li>Quality Assurance</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('cocomo.html')">COCOMO</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>
+© BTech LMS • Software Engineering • Advanced Academic UI
+</footer>
+
+<script>
+function openPage(page){
+  window.open(page,"_blank");
+}
+</script>
+
+</body>
+</html>

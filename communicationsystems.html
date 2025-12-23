@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communication Systems | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --card:#0b1229;
+  --glass:rgba(255,255,255,0.06);
+  --neon1:#00f6ff;
+  --neon2:#9f7aea;
+  --neon3:#22d3ee;
+  --text:#e5e7eb;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159,122,234,.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,246,255,.15), transparent 40%),
+    linear-gradient(180deg,#020617,var(--bg));
+  color:var(--text);
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:18px 50px;
+  background:rgba(5,8,22,.8);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* HERO */
+.hero{
+  min-height:65vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:float 4s infinite;
+}
+
+.hero p{
+  margin-top:15px;
+  max-width:780px;
+  opacity:.85;
+}
+
+/* SECTION */
+section{
+  padding:80px 8%;
+}
+
+section h2{
+  text-align:center;
+  margin-bottom:45px;
+  color:var(--neon3);
+  text-shadow:0 0 25px rgba(34,211,238,.6);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+/* CARD */
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border-radius:22px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  transition:.5s cubic-bezier(.22,1,.36,1);
+}
+
+.card:hover{
+  transform:translateY(-12px) scale(1.05);
+  box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 40px rgba(0,246,255,.4);
+}
+
+.card h3{
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:12px;
+}
+
+.card p{
+  font-size:.95rem;
+  opacity:.85;
+  line-height:1.6;
+}
+
+ul{
+  padding-left:20px;
+  margin-top:10px;
+  line-height:1.7;
+  font-size:.9rem;
+}
+
+/* BUTTONS */
+.btn-group{
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.btn{
+  padding:8px 18px;
+  border-radius:30px;
+  border:1px solid rgba(0,246,255,.4);
+  background:none;
+  color:var(--neon1);
+  cursor:pointer;
+  transition:.4s;
+  font-size:.85rem;
+}
+
+.btn:hover{
+  background:var(--neon1);
+  color:black;
+  box-shadow:0 0 20px var(--neon1);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  font-size:.85rem;
+}
+
+/* ANIMATION */
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+  100%{transform:translateY(0)}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:2.2rem}
+  section{padding:60px 6%}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">BTech LMS</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Communication Systems</h1>
+    <p>Communication Systems deal with the transmission, reception, and processing of information using electrical and electromagnetic signals.</p>
+  </div>
+</div>
+
+<!-- NOTES -->
+<section>
+<h2>Notes</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Basics of Communication</h3>
+<ul>
+<li>Elements of Communication System</li>
+<li>Analog vs Digital Communication</li>
+<li>Bandwidth & Noise</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Analog Communication</h3>
+<ul>
+<li>AM, FM, PM</li>
+<li>Modulation & Demodulation</li>
+<li>Transmitters & Receivers</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Digital Communication</h3>
+<ul>
+<li>Sampling & Quantization</li>
+<li>PCM, DPCM</li>
+<li>ASK, FSK, PSK</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Noise & Channel</h3>
+<ul>
+<li>Internal & External Noise</li>
+<li>SNR</li>
+<li>Channel Capacity</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- VIDEOS -->
+<section>
+<h2>Videos</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Concept Videos</h3>
+<p>Clear explanations with waveforms & examples</p>
+<div class="btn-group">
+<button class="btn">Communication Basics</button>
+<button class="btn">Analog Modulation</button>
+<button class="btn">Digital Modulation</button>
+</div>
+</div>
+
+<div class="card">
+<h3>Numerical Problems</h3>
+<p>Exam-oriented problem solving</p>
+<div class="btn-group">
+<button class="btn">AM/FM Problems</button>
+<button class="btn">PCM Problems</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- QUIZ -->
+<section>
+<h2>Quiz</h2>
+<div class="grid">
+
+<div class="card">
+<h3>MCQ Test</h3>
+<p>Test your understanding of Communication Systems</p>
+<div class="btn-group">
+<button class="btn">Start Quiz</button>
+<button class="btn">Exam Mode</button>
+</div>
+</div>
+
+<div class="card">
+<h3>Quick Revision</h3>
+<p>Important formulas & short notes</p>
+<div class="btn-group">
+<button class="btn">Formula Sheet</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>
+© BTech LMS • Communication Systems • Advanced Academic UI
+</footer>
+
+</body>
+</html>

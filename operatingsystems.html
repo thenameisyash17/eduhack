@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --card:#0b1229;
+  --glass:rgba(255,255,255,0.06);
+  --neon1:#00f6ff;
+  --neon2:#9f7aea;
+  --neon3:#22d3ee;
+  --text:#e5e7eb;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159,122,234,.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,246,255,.15), transparent 40%),
+    linear-gradient(180deg,#020617,var(--bg));
+  color:var(--text);
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:18px 50px;
+  background:rgba(5,8,22,.8);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* HERO */
+.hero{
+  min-height:70vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:float 4s infinite;
+}
+
+.hero p{
+  margin-top:15px;
+  max-width:760px;
+  opacity:.85;
+}
+
+/* SECTION */
+section{
+  padding:80px 8%;
+}
+
+section h2{
+  text-align:center;
+  margin-bottom:45px;
+  color:var(--neon3);
+  text-shadow:0 0 25px rgba(34,211,238,.6);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+
+/* CARD */
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border-radius:22px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  transition:.5s cubic-bezier(.22,1,.36,1);
+}
+
+.card:hover{
+  transform:translateY(-12px) scale(1.05);
+  box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 40px rgba(0,246,255,.4);
+}
+
+.card h3{
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:12px;
+}
+
+.card p{
+  font-size:.95rem;
+  opacity:.85;
+  line-height:1.6;
+}
+
+ul{
+  padding-left:20px;
+  margin-top:10px;
+  line-height:1.7;
+  font-size:.9rem;
+}
+
+/* BUTTONS */
+.btn-group{
+  margin-top:15px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.btn{
+  padding:8px 18px;
+  border-radius:30px;
+  border:1px solid rgba(0,246,255,.4);
+  background:none;
+  color:var(--neon1);
+  cursor:pointer;
+  transition:.4s;
+  font-size:.85rem;
+}
+
+.btn:hover{
+  background:var(--neon1);
+  color:black;
+  box-shadow:0 0 20px var(--neon1);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  font-size:.85rem;
+}
+
+/* ANIMATION */
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+  100%{transform:translateY(0)}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:2.2rem}
+  section{padding:60px 6%}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">BTech LMS</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Operating Systems</h1>
+    <p>An Operating System is system software that manages hardware resources and provides services to computer programs.</p>
+  </div>
+</div>
+
+<!-- OS BASICS -->
+<section>
+<h2>OS Basics</h2>
+<div class="grid">
+
+<div class="card">
+<h3>What is an Operating System?</h3>
+<p>An OS acts as an interface between the user and computer hardware, managing resources and executing applications.</p>
+</div>
+
+<div class="card">
+<h3>Functions</h3>
+<ul>
+<li>Process Management</li>
+<li>Memory Management</li>
+<li>File Management</li>
+<li>Device Management</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Types of OS</h3>
+<ul>
+<li>Batch OS</li>
+<li>Time Sharing OS</li>
+<li>Distributed OS</li>
+<li>Real-Time OS</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- PROCESS MANAGEMENT -->
+<section>
+<h2>Process Management</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Process</h3>
+<p>A process is a program in execution with its own state and resources.</p>
+</div>
+
+<div class="card">
+<h3>CPU Scheduling</h3>
+<ul>
+<li>FCFS</li>
+<li>SJF</li>
+<li>Priority</li>
+<li>Round Robin</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('fcfs.html')">FCFS</button>
+<button class="btn" onclick="openPage('sjf.html')">SJF</button>
+<button class="btn" onclick="openPage('roundrobin.html')">Round Robin</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- THREADS -->
+<section>
+<h2>Threads & Concurrency</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Thread</h3>
+<p>A lightweight process that shares resources of its parent process.</p>
+</div>
+
+<div class="card">
+<h3>Concurrency Issues</h3>
+<ul>
+<li>Race Condition</li>
+<li>Critical Section</li>
+<li>Synchronization</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('semaphore.html')">Semaphore</button>
+<button class="btn" onclick="openPage('mutex.html')">Mutex</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- MEMORY -->
+<section>
+<h2>Memory Management</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Memory Allocation</h3>
+<ul>
+<li>Fixed Partition</li>
+<li>Variable Partition</li>
+<li>Paging</li>
+<li>Segmentation</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Virtual Memory</h3>
+<p>Uses disk space to extend main memory.</p>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('paging.html')">Paging</button>
+<button class="btn" onclick="openPage('segmentation.html')">Segmentation</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- DEADLOCK -->
+<section>
+<h2>Deadlock</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Deadlock</h3>
+<p>A situation where processes wait indefinitely for resources held by each other.</p>
+</div>
+
+<div class="card">
+<h3>Conditions</h3>
+<ul>
+<li>Mutual Exclusion</li>
+<li>Hold and Wait</li>
+<li>No Preemption</li>
+<li>Circular Wait</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('deadlock-prevention.html')">Prevention</button>
+<button class="btn" onclick="openPage('deadlock-avoidance.html')">Avoidance</button>
+<button class="btn" onclick="openPage('bankers.html')">Banker's</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- FILE SYSTEM -->
+<section>
+<h2>File System</h2>
+<div class="grid">
+
+<div class="card">
+<h3>File Management</h3>
+<p>Controls how data is stored and retrieved.</p>
+<ul>
+<li>File Access Methods</li>
+<li>Directory Structure</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Disk Scheduling</h3>
+<ul>
+<li>FCFS</li>
+<li>SSTF</li>
+<li>SCAN</li>
+<li>C-SCAN</li>
+</ul>
+
+<div class="btn-group">
+<button class="btn" onclick="openPage('disk-scheduling.html')">Algorithms</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>
+© BTech LMS • Operating Systems • Advanced Academic UI
+</footer>
+
+<script>
+function openPage(page){
+  window.open(page,"_blank");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Systems | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050816;
+  --card:#0b1229;
+  --neon:#00f6ff;
+  --purple:#9f7aea;
+  --neon3:#22d3ee;
+  --text:#e5e7eb;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159,122,234,.12), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,246,255,.15), transparent 40%),
+    radial-gradient(circle at top,#0a0f2c,var(--bg));
+  color:var(--text);
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:18px 40px;
+  background:rgba(5,8,22,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.logo{
+  font-size:1.6rem;
+  font-weight:800;
+  color:var(--neon);
+  text-shadow:0 0 15px var(--neon);
+}
+
+/* HERO */
+.hero{
+  padding:70px 8% 40px;
+  text-align:center;
+}
+.hero h1{
+  font-size:2.8rem;
+  color:var(--neon);
+  text-shadow:0 0 25px var(--neon);
+  margin-bottom:15px;
+  animation:float 4s ease-in-out infinite;
+}
+.hero p{
+  margin-top:12px;
+  color:#cbd5f5;
+  font-size:1.1rem;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.6;
+}
+
+/* CONTENT */
+section{padding:50px 8%}
+.section-title{
+  margin-bottom:30px;
+  color:var(--purple);
+  font-size:1.5rem;
+  text-shadow:0 0 20px rgba(159,122,234,.5);
+  position:relative;
+  padding-left:15px;
+}
+.section-title::before {
+  content:'';
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:5px;
+  height:70%;
+  background:var(--neon);
+  border-radius:3px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+.card{
+  background:rgba(11, 18, 41, 0.7);
+  padding:28px;
+  border-radius:18px;
+  border:1px solid rgba(0,246,255,.2);
+  transition:.4s cubic-bezier(.22,1,.36,1);
+  backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
+}
+.card::before {
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--neon), var(--purple));
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.card:hover::before {
+  opacity:1;
+}
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 15px 40px rgba(0,246,255,.3);
+  border-color:var(--neon);
+}
+.card h3{
+  color:var(--neon);
+  margin-bottom:15px;
+  font-size:1.3rem;
+}
+.card ul{
+  list-style:none;
+  padding-left:10px;
+}
+.card ul li{
+  padding:8px 0;
+  color:#cbd5f5;
+  position:relative;
+  padding-left:25px;
+}
+.card ul li::before {
+  content:'✔';
+  position:absolute;
+  left:0;
+  color:var(--neon);
+}
+
+/* Q&A SECTION */
+.qa-section {
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(11, 18, 41, 0.7);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  max-width: 1200px;
+  position:relative;
+  overflow:hidden;
+}
+
+.qa-section::before {
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle, rgba(0,246,255,.03) 0%, transparent 70%);
+  z-index:-1;
+}
+
+.qa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.qa-header h3 {
+  color: var(--purple);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-shadow:0 0 15px rgba(159,122,234,.5);
+}
+
+.close-qa {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--neon);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.close-qa:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.question-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(.22,1,.36,1);
+  cursor: pointer;
+}
+
+.question-item:hover {
+  border-color: var(--neon);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.question-header {
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-header h4 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #f1f5f9;
+  flex: 1;
+}
+
+.arrow {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  color: var(--neon);
+  margin-left: 15px;
+  flex-shrink: 0;
+}
+
+.answer-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 22px;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-top: 1px solid transparent;
+}
+
+.answer-content.active {
+  max-height: 600px;
+  padding: 25px;
+  border-top: 1px solid rgba(0, 246, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.answer-content p {
+  line-height: 1.7;
+  color: #cbd5e1;
+  margin-bottom: 12px;
+}
+
+.answer-content ul {
+  margin-top: 12px;
+  padding-left: 22px;
+}
+
+.answer-content li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.answer-content strong {
+  color: var(--neon);
+}
+
+.question-item.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* ANIMATIONS */
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
+}
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* SPECIAL ELEMENTS */
+.formula-box {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  font-family: 'Courier New', monospace;
+  border-left: 3px solid var(--neon);
+  color: #a3e7ff;
+}
+
+.highlight {
+  background: rgba(0, 246, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 246, 255, 0.3);
+}
+
+/* BUTTONS */
+.btn {
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 22px;
+  background:rgba(0,246,255,.1);
+  border:1px solid var(--neon);
+  color:var(--neon);
+  border-radius:8px;
+  cursor:pointer;
+  transition:all 0.3s;
+  font-weight:500;
+  text-decoration:none;
+}
+.btn:hover {
+  background:var(--neon);
+  color:black;
+  box-shadow:0 0 20px var(--neon);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:.9rem;
+  color:#9aa4d1;
+  border-top:1px solid rgba(255,255,255,.1);
+  margin-top:40px;
+}
+
+@media(max-width:768px){
+  .hero h1{font-size:2.1rem}
+  section{padding:40px 6%}
+  .qa-section { padding: 20px; margin: 30px 6%; }
+  .qa-header h3 { font-size: 1.2rem; }
+  .question-header h4 { font-size: 0.95rem; }
+  .card { padding: 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">BTech LMS</div>
+</nav>
+
+<div class="hero">
+  <h1>Power Systems</h1>
+  <p>Study of generation, transmission, distribution, and utilization of electric power. Learn about power plants, grid networks, protection systems, and renewable energy integration.</p>
+</div>
+
+<section>
+  <div class="section-title">📘 Notes & Study Material</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Unit 1: Power Generation</h3>
+      <ul>
+        <li>Thermal, Hydro, Nuclear Power Plants</li>
+        <li>Load Curves & Diversity Factor</li>
+        <li>Tariffs & Economics of Generation</li>
+        <li>Renewable Energy Sources</li>
+        <li>Power Plant Instrumentation</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Unit 2: Transmission Systems</h3>
+      <ul>
+        <li>Line Parameters & Constants</li>
+        <li>Short, Medium, Long Transmission Lines</li>
+        <li>Performance & Efficiency</li>
+        <li>EHV & HVDC Transmission</li>
+        <li>Corona Effect & Radio Interference</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Unit 3: Distribution Systems</h3>
+      <ul>
+        <li>Feeders, Distributors & Service Mains</li>
+        <li>Voltage Regulation Methods</li>
+        <li>Loss Reduction Techniques</li>
+        <li>Substation Design & Equipment</li>
+        <li>Distribution Automation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Q&A SECTION -->
+<div class="qa-section slide-in">
+  <div class="qa-header">
+    <h3>Power Systems Practice Questions</h3>
+    <button class="close-qa" id="closeQa">×</button>
+  </div>
+  <div class="qa-list" id="qaList">
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Compare thermal, hydro, and nuclear power plants in terms of their advantages and limitations</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Thermal Power Plants:</strong></p>
+        <ul>
+          <li><strong>Advantages:</strong> Can be located anywhere (fuel transportable), quick start-up, high reliability</li>
+          <li><strong>Limitations:</strong> High fuel cost, pollution (CO₂, SOₓ, NOₓ), lower efficiency (35-40%), requires cooling water</li>
+          <li><strong>Capital Cost:</strong> Moderate</li>
+        </ul>
+        
+        <p><strong>Hydroelectric Power Plants:</strong></p>
+        <ul>
+          <li><strong>Advantages:</strong> Renewable, zero emissions, quick response to load changes, long lifespan, high efficiency (85-90%)</li>
+          <li><strong>Limitations:</strong> Site-specific (requires suitable topography), high initial cost, environmental impact (flooding), seasonal variations</li>
+          <li><strong>Capital Cost:</strong> High</li>
+        </ul>
+        
+        <p><strong>Nuclear Power Plants:</strong></p>
+        <ul>
+          <li><strong>Advantages:</strong> High energy density, low fuel cost per unit energy, zero greenhouse gases during operation</li>
+          <li><strong>Limitations:</strong> Radioactive waste disposal, safety concerns, high capital cost, public opposition, limited fuel availability</li>
+          <li><strong>Capital Cost:</strong> Very high</li>
+        </ul>
+        
+        <p><strong>Economic Dispatch:</strong> Hydro plants typically have the lowest operating cost, followed by nuclear, then thermal plants.</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What are the differences between short, medium, and long transmission lines?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p>Transmission lines are classified based on their length and the analysis method used:</p>
+        
+        <div class="formula-box">
+          <p><strong>Classification by Length:</strong></p>
+          <p>Short Line: Length ≤ 80 km (50 miles)</p>
+          <p>Medium Line: 80 km < Length ≤ 240 km (150 miles)</p>
+          <p>Long Line: Length > 240 km</p>
+        </div>
+        
+        <p><strong>Short Transmission Lines:</strong></p>
+        <ul>
+          <li>Only series impedance (R + jX) is considered</li>
+          <li>Shunt capacitance is neglected</li>
+          <li>Voltage regulation is primarily affected by resistance and reactance</li>
+          <li>Used for distribution networks</li>
+        </ul>
+        
+        <p><strong>Medium Transmission Lines:</strong></p>
+        <ul>
+          <li>Both series impedance and shunt capacitance are considered</li>
+          <li>Analyzed using nominal-π or nominal-T equivalent circuits</li>
+          <li>Shunt capacitance is lumped at one or two points</li>
+          <li>Used for sub-transmission networks</li>
+        </ul>
+        
+        <p><strong>Long Transmission Lines:</strong></p>
+        <ul>
+          <li>Parameters are distributed uniformly along the line</li>
+          <li>Analyzed using exact transmission line equations (hyperbolic functions)</li>
+          <li>Requires consideration of wave propagation effects</li>
+          <li>Used for bulk power transmission over long distances</li>
+          <li>Important phenomena: Ferranti effect, corona loss, surge impedance loading</li>
+        </ul>
+        
+        <p><strong>Key Parameter:</strong> The classification depends on the electrical length (λ/10) rather than just physical length.</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Explain the importance of load curves and discuss different types of tariffs</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Load Curves:</strong> Graphical representation of load variation versus time.</p>
+        
+        <ul>
+          <li><strong>Daily Load Curve:</strong> Shows variation over 24 hours</li>
+          <li><strong>Monthly Load Curve:</strong> Shows variation over a month</li>
+          <li><strong>Yearly Load Curve:</strong> Shows seasonal variations</li>
+        </ul>
+        
+        <p><strong>Important Parameters from Load Curves:</strong></p>
+        <div class="formula-box">
+          <p>1. Maximum Demand (MD): Peak load during a period</p>
+          <p>2. Average Load = (Area under load curve) / Time period</p>
+          <p>3. Load Factor = (Average Load) / (Maximum Demand)</p>
+          <p>4. Diversity Factor = (Sum of individual max demands) / (System max demand)</p>
+          <p>5. Plant Capacity Factor = (Actual energy produced) / (Max possible energy)</p>
+        </div>
+        
+        <p><strong>Types of Tariffs:</strong></p>
+        
+        <p><strong>1. Simple Rate (Flat Rate):</strong></p>
+        <ul>
+          <li>Fixed price per kWh consumed</li>
+          <li>Simple but doesn't encourage off-peak usage</li>
+        </ul>
+        
+        <p><strong>2. Block Rate:</strong></p>
+        <ul>
+          <li>Different rates for different consumption blocks</li>
+          <li>Lower rates for higher consumption blocks (declining block rate)</li>
+          <li>Or higher rates for higher consumption (increasing block rate)</li>
+        </ul>
+        
+        <p><strong>3. Two-Part Tariff:</strong></p>
+        <div class="formula-box">
+          <p>Total Charges = Fixed Charge + Running Charge</p>
+          <p>Fixed Charge = a × kW of max demand</p>
+          <p>Running Charge = b × kWh consumed</p>
+        </div>
+        
+        <p><strong>4. Three-Part Tariff:</strong></p>
+        <div class="formula-box">
+          <p>Total Charges = Fixed Charge + Semi-fixed Charge + Running Charge</p>
+          <p>Fixed Charge = Annual fixed cost</p>
+          <p>Semi-fixed = a × kW of max demand</p>
+          <p>Running Charge = b × kWh consumed</p>
+        </div>
+        
+        <p><strong>5. Time-of-Use (TOU) Tariff:</strong></p>
+        <ul>
+          <li>Different rates for peak, off-peak, and shoulder periods</li>
+          <li>Encourages load shifting to off-peak hours</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What is the Ferranti effect in transmission lines and how can it be mitigated?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Ferranti Effect:</strong> A phenomenon in long transmission lines where the receiving-end voltage becomes higher than the sending-end voltage when the line is lightly loaded or open-circuited.</p>
+        
+        <div class="formula-box">
+          <p><strong>Cause:</strong> Charging current (Ic) flowing through the line capacitance</p>
+          <p>V<sub>R</sub> > V<sub>S</sub> when line is lightly loaded</p>
+          <p>Magnitude increases with line length and voltage level</p>
+        </div>
+        
+        <p><strong>Explanation:</strong></p>
+        <ul>
+          <li>In long lines, shunt capacitance is significant</li>
+          <li>When line is lightly loaded or no-load, current is mainly capacitive (charging current)</li>
+          <li>This capacitive current flows through series inductance, causing voltage rise</li>
+          <li>The effect is more pronounced in EHV (Extra High Voltage) lines</li>
+        </ul>
+        
+        <p><strong>Problems Caused:</strong></p>
+        <ul>
+          <li>Overvoltage at receiving end can damage equipment</li>
+          <li>Insulation breakdown</li>
+          <li>Increased corona losses</li>
+          <li>Magnetic saturation in transformers</li>
+          <li>Reduced lifespan of equipment</li>
+        </ul>
+        
+        <p><strong>Mitigation Methods:</strong></p>
+        <ul>
+          <li><strong>Shunt Reactors:</strong> Connected at receiving end to absorb reactive power</li>
+          <li><strong>Series Capacitors:</strong> Compensate line inductance</li>
+          <li><strong>Static VAR Compensators (SVC):</strong> Fast reactive power control</li>
+          <li><strong>Synchronous Condensers:</strong> Provide variable reactive power absorption</li>
+          <li><strong>Load Switching:</strong> Connect suitable load to draw lagging current</li>
+          <li><strong>Voltage Regulators:</strong> Tap-changing transformers</li>
+          <li><strong>FACTS Devices:</strong> STATCOM, TCSC for dynamic compensation</li>
+        </ul>
+        
+        <p><strong>Rule of Thumb:</strong> Ferranti effect becomes significant for lines longer than 240 km at 50 Hz or 200 km at 60 Hz.</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>Compare EHVAC and HVDC transmission systems</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>EHVAC (Extra High Voltage AC):</strong> AC transmission at voltages above 230 kV (typically 400 kV, 765 kV)</p>
+        <p><strong>HVDC (High Voltage DC):</strong> DC transmission at high voltages (typically ±500 kV, ±800 kV)</p>
+        
+        <p><strong>Comparison:</strong></p>
+        
+        <div class="formula-box">
+          <p><strong>1. Power Transfer Capacity:</strong></p>
+          <p>HVDC: Higher for same conductor size (no skin effect, no charging current)</p>
+          <p>EHVAC: Limited by stability and reactive power requirements</p>
+        </div>
+        
+        <div class="formula-box">
+          <p><strong>2. Line Cost:</strong></p>
+          <p>HVDC: Lower (fewer conductors, smaller towers)</p>
+          <p>EHVAC: Higher (more conductors, larger towers)</p>
+        </div>
+        
+        <div class="formula-box">
+          <p><strong>3. Terminal Cost:</strong></p>
+          <p>HVDC: Very high (converters, filters, control systems)</p>
+          <p>EHVAC: Lower (transformers, circuit breakers)</p>
+        </div>
+        
+        <div class="formula-box">
+          <p><strong>4. Transmission Distance:</strong></p>
+          <p>HVDC: Economical for > 500-800 km (break-even distance)</p>
+          <p>EHVAC: Economical for shorter distances</p>
+        </div>
+        
+        <p><strong>5. Power Losses:</strong></p>
+        <ul>
+          <li>HVDC: Lower line losses (no skin effect, no dielectric losses)</li>
+          <li>EHVAC: Higher losses (skin effect, corona, dielectric losses)</li>
+        </ul>
+        
+        <p><strong>6. Interconnection:</strong></p>
+        <ul>
+          <li>HVDC: Can connect asynchronous AC systems, controls power flow</li>
+          <li>EHVAC: Requires synchronization, limited control over power flow</li>
+        </ul>
+        
+        <p><strong>7. Fault Current:</strong></p>
+        <ul>
+          <li>HVDC: Lower fault current, easier to interrupt</li>
+          <li>EHVAC: Higher fault current, requires heavy circuit breakers</li>
+        </ul>
+        
+        <p><strong>Applications:</strong></p>
+        <ul>
+          <li><strong>HVDC:</strong> Long-distance bulk power transmission, submarine cables, asynchronous interconnections, renewable energy integration</li>
+          <li><strong>EHVAC:</strong> Shorter distances, existing AC grid expansion, regional transmission</li>
+        </ul>
+        
+        <p><strong>Modern Trend:</strong> Ultra HVDC (±800 kV, ±1100 kV) for mega power transmission projects.</p>
+      </div>
+    </div>
+    
+    <div class="question-item">
+      <div class="question-header">
+        <h4>What is the significance of per unit system in power system analysis?</h4>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="answer-content">
+        <p><strong>Per Unit System:</strong> A method of expressing electrical quantities as fractions of a defined base unit, making calculations simpler in power systems.</p>
+        
+        <div class="formula-box">
+          <p>Per Unit Value = (Actual Value) / (Base Value)</p>
+          <p>pu = V / V<sub>base</sub> for voltage</p>
+          <p>pu = I / I<sub>base</sub> for current</p>
+          <p>pu = S / S<sub>base</sub> for power</p>
+          <p>pu = Z / Z<sub>base</sub> for impedance</p>
+        </div>
+        
+        <p><strong>Advantages of Per Unit System:</strong></p>
+        <ul>
+          <li><strong>Simplified Calculations:</strong> Eliminates √3 factors in three-phase systems</li>
+          <li><strong>Easy Comparison:</strong> Values typically range between 0.1 and 10 pu</li>
+          <li><strong>Transformer Representation:</strong> Removes turns ratio, ideal transformer eliminated</li>
+          <li><strong>Voltage Level Independence:</strong> Same pu values on both sides of transformer</li>
+          <li><strong>Machine Parameters:</strong> Typical values fall in predictable ranges (X<sub>d</sub>'' ≈ 0.1-0.2 pu)</li>
+          <li><strong>Error Reduction:</strong> Fewer calculation errors in complex systems</li>
+        </ul>
+        
+        <p><strong>Base Quantities Selection:</strong></p>
+        <div class="formula-box">
+          <p>Usually select: S<sub>base</sub> (VA) and V<sub>base</sub> (V)</p>
+          <p>Then calculate: I<sub>base</sub> = S<sub>base</sub> / (√3 × V<sub>base</sub>) for 3-phase</p>
+          <p>And: Z<sub>base</sub> = V<sub>base</sub>² / S<sub>base</sub></p>
+        </div>
+        
+        <p><strong>Changing Base:</strong> When equipment ratings differ from system base:</p>
+        <div class="formula-box">
+          <p>Z<sub>pu(new)</sub> = Z<sub>pu(old)</sub> × (S<sub>base(new)</sub> / S<sub>base(old)</sub>) × (V<sub>base(old)</sub> / V<sub>base(new)</sub>)²</p>
+        </div>
+        
+        <p><strong>Common Base Values:</strong></p>
+        <ul>
+          <li>System Base: 100 MVA is common for large systems</li>
+          <li>Equipment Bases: Use their own ratings</li>
+          <li>Voltage Base: Usually nominal system voltage at each voltage level</li>
+        </ul>
+        
+        <p><strong>Application Example:</strong> Fault current calculations, load flow studies, stability analysis all use per unit system for simplicity.</p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<section>
+  <div class="section-title">🎥 Video Lectures</div>
+  <div class="grid">
+    <div class="card">
+      <h3>Power Generation & Economics</h3>
+      <ul>
+        <li>Types of Power Plants & Comparison</li>
+        <li>Efficiency Calculations & Heat Rate</li>
+        <li>Tariff Structures & Load Management</li>
+        <li>Renewable Energy Integration</li>
+      </ul>
+      <a href="#" class="btn">Watch Lectures</a>
+    </div>
+    <div class="card">
+      <h3>Transmission Line Analysis</h3>
+      <ul>
+        <li>Short, Medium & Long Line Models</li>
+        <li>Corona Effect & Radio Interference</li>
+        <li>EHVAC & HVDC Transmission</li>
+        <li>Ferranti Effect & Compensation</li>
+      </ul>
+      <a href="#" class="btn">Watch Lectures</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">📝 Assessments & Practice</div>
+  <div class="grid">
+    <div class="card">
+      <h3>MCQ Tests</h3>
+      <ul>
+        <li>Level 1: Basic Concepts (20 Questions)</li>
+        <li>Level 2: Numerical Problems (15 Questions)</li>
+        <li>Level 3: Advanced Applications (10 Questions)</li>
+        <li>Time: 15-30 Minutes Each</li>
+      </ul>
+      <a href="#" class="btn">Start Test</a>
+    </div>
+    <div class="card">
+      <h3>Solved Problems & Previous Papers</h3>
+      <ul>
+        <li>University Question Papers</li>
+        <li>GATE Previous Year Questions</li>
+        <li>Step-by-Step Solutions</li>
+        <li>Important Numerical Problems</li>
+      </ul>
+      <a href="#" class="btn">View Problems</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 BTech LMS | Electrical Engineering - Power Systems
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all question items
+  const questionItems = document.querySelectorAll('.question-item');
+  const closeQaBtn = document.getElementById('closeQa');
+  const qaSection = document.querySelector('.qa-section');
+  
+  // Add click event to each question
+  questionItems.forEach(item => {
+    const questionHeader = item.querySelector('.question-header');
+    const answerContent = item.querySelector('.answer-content');
+    
+    questionHeader.addEventListener('click', () => {
+      // Toggle active class on the question item
+      item.classList.toggle('active');
+      
+      // Toggle active class on the answer content
+      answerContent.classList.toggle('active');
+    });
+  });
+  
+  // Close Q&A section functionality
+  closeQaBtn.addEventListener('click', () => {
+    qaSection.style.opacity = '0';
+    qaSection.style.transform = 'translateY(30px)';
+    qaSection.style.height = '0';
+    qaSection.style.padding = '0';
+    qaSection.style.margin = '0';
+    qaSection.style.overflow = 'hidden';
+    
+    // Remove after animation
+    setTimeout(() => {
+      qaSection.style.display = 'none';
+    }, 500);
+  });
+  
+  // Show Q&A section with animation when page loads
+  setTimeout(() => {
+    qaSection.classList.add('slide-in');
+  }, 300);
+  
+  // Add interactivity to buttons
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const btnText = this.textContent;
+      const topics = {
+        'Watch Lectures': 'Power Systems video lectures',
+        'Start Test': 'Power Systems assessment test',
+        'View Problems': 'Solved numerical problems'
+      };
+      
+      const topic = topics[btnText] || btnText;
+      alert(`Opening ${topic} for Power Systems`);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

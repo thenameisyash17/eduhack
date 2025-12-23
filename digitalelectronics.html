@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Electronics | BTech LMS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --bg: #020617;
+  --card: #0b1229;
+  --glass: rgba(255,255,255,0.06);
+  --neon1: #00f6ff;
+  --neon2: #9f7aea;
+  --neon3: #22d3ee;
+  --neon4: #f472b6;
+  --text: #e5e7eb;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --gate-on: #00ff88;
+  --gate-off: #ff4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159,122,234,.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,246,255,.15), transparent 40%),
+    radial-gradient(circle at 40% 80%, rgba(244,114,182,.1), transparent 40%),
+    linear-gradient(180deg, #020617, var(--bg));
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Navigation */
+nav {
+  padding: 18px 50px;
+  background: rgba(5,8,22,.85);
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.mode-toggle, .print-btn {
+  background: rgba(255,255,255,.1);
+  border: none;
+  color: var(--neon1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+.mode-toggle:hover, .print-btn:hover {
+  background: rgba(0,246,255,.2);
+  transform: scale(1.1);
+}
+
+/* Hero */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 50%, rgba(0,246,255,.1), transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(159,122,234,.1), transparent 50%);
+  z-index: -1;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+  max-width: 780px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.progress-item {
+  text-align: center;
+}
+
+.progress-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--neon1);
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Content Navigation */
+.content-nav {
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
+  position: sticky;
+  top: 76px;
+  z-index: 90;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 30px;
+  padding: 0 50px;
+  flex-wrap: wrap;
+}
+
+.nav-list li {
+  position: relative;
+}
+
+.nav-list a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-list a:hover, .nav-list a.active {
+  background: rgba(0,246,255,.15);
+  color: var(--neon1);
+}
+
+.nav-list a i {
+  font-size: 1.1rem;
+}
+
+/* Main Content */
+section {
+  padding: 70px 8%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  color: var(--neon3);
+  font-size: 2.2rem;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon3));
+  border-radius: 2px;
+}
+
+/* Cards */
+.card {
+  background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255,255,255,.12);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 40px rgba(0,246,255,.2);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--neon1), var(--neon2);
+}
+
+.card h3 {
+  color: var(--neon1);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card h3 i {
+  font-size: 1.2rem;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Accordion */
+.accordion {
+  margin-top: 30px;
+}
+
+.accordion-item {
+  background: rgba(255,255,255,.05);
+  border-radius: 12px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.accordion-header {
+  padding: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,.2);
+  transition: background 0.3s;
+}
+
+.accordion-header:hover {
+  background: rgba(0,246,255,.1);
+}
+
+.accordion-header.active {
+  background: rgba(0,246,255,.15);
+  color: var(--neon1);
+}
+
+.accordion-icon {
+  transition: transform 0.3s;
+}
+
+.accordion-header.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.accordion-content.show {
+  padding: 20px;
+  max-height: 1000px;
+}
+
+/* Logic Gate Simulator */
+.gate-simulator {
+  background: rgba(0,0,0,.3);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px 0;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.gate-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.gate-btn {
+  background: rgba(255,255,255,.1);
+  border: 1px solid var(--neon1);
+  color: var(--neon1);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.gate-btn:hover {
+  background: rgba(0,246,255,.2);
+}
+
+.gate-btn.active {
+  background: var(--neon1);
+  color: var(--bg);
+}
+
+.gate-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.gate-inputs, .gate-output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.input-switch, .output-led {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.input-switch {
+  background: rgba(255,255,255,.1);
+  border: 2px solid var(--neon2);
+}
+
+.input-switch.on {
+  background: var(--gate-on);
+  color: var(--bg);
+  box-shadow: 0 0 20px var(--gate-on);
+}
+
+.input-switch.off {
+  background: var(--gate-off);
+  color: white;
+  box-shadow: 0 0 20px var(--gate-off);
+}
+
+.output-led {
+  background: rgba(255,255,255,.1);
+  border: 2px solid var(--neon1);
+}
+
+.output-led.on {
+  background: var(--gate-on);
+  color: var(--bg);
+  box-shadow: 0 0 30px var(--gate-on);
+}
+
+.gate-symbol {
+  font-size: 4rem;
+  color: var(--neon1);
+  padding: 20px;
+  background: rgba(0,0,0,.3);
+  border-radius: 15px;
+  min-width: 120px;
+  text-align: center;
+}
+
+/* Truth Table Generator */
+.truth-table {
+  background: rgba(0,0,0,.3);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px 0;
+  border: 1px solid rgba(255,255,255,.1);
+  overflow-x: auto;
+}
+
+.truth-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.truth-table th, .truth-table td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.truth-table th {
+  background: rgba(0,246,255,.1);
+  color: var(--neon1);
+  font-weight: 600;
+}
+
+.truth-table td {
+  background: rgba(255,255,255,.05);
+}
+
+.truth-table td.one {
+  background: rgba(0,255,136,.2);
+  color: var(--gate-on);
+  font-weight: 700;
+}
+
+.truth-table td.zero {
+  background: rgba(255,68,68,.2);
+  color: var(--gate-off);
+  font-weight: 700;
+}
+
+/* Circuit Simulator */
+.circuit-simulator {
+  background: rgba(0,0,0,.3);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px 0;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.circuit-canvas {
+  width: 100%;
+  height: 300px;
+  background: rgba(0,0,0,.5);
+  border-radius: 10px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.circuit-element {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,.1);
+  border: 2px solid var(--neon1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: move;
+  transition: all 0.3s;
+}
+
+.circuit-element:hover {
+  box-shadow: 0 0 15px var(--neon1);
+}
+
+.circuit-toolbar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.circuit-tool {
+  padding: 10px 20px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid var(--neon1);
+  color: var(--neon1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.circuit-tool:hover {
+  background: rgba(0,246,255,.2);
+}
+
+/* Number System Converter */
+.converter {
+  background: rgba(0,0,0,.3);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px 0;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.converter-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.converter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.converter-group label {
+  color: var(--neon1);
+  font-weight: 600;
+}
+
+.converter-group input {
+  padding: 12px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid var(--neon1);
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+}
+
+.converter-group input:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--neon1);
+}
+
+.converter-result {
+  background: rgba(0,0,0,.5);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+/* Questions Section */
+.questions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.question-card {
+  background: rgba(255,255,255,.05);
+  border-radius: 15px;
+  padding: 25px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,.1);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.question-card:hover {
+  background: rgba(0,246,255,.1);
+  transform: translateY(-3px);
+  border-color: var(--neon1);
+}
+
+.question-card.active {
+  background: rgba(0,246,255,.15);
+  border-color: var(--neon1);
+}
+
+.question-number {
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  background: var(--neon1);
+  color: var(--bg);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.question-text {
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.question-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.tag {
+  background: rgba(159,122,234,.2);
+  color: var(--neon2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.answer-container {
+  margin-top: 40px;
+  display: none;
+}
+
+.answer-container.show {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Quiz Section */
+.quiz-container {
+  background: rgba(255,255,255,.05);
+  border-radius: 20px;
+  padding: 40px;
+  margin-top: 40px;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.quiz-question {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quiz-option {
+  background: rgba(255,255,255,.05);
+  padding: 15px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,.1);
+  transition: all 0.3s;
+}
+
+.quiz-option:hover {
+  background: rgba(0,246,255,.1);
+}
+
+.quiz-option.selected {
+  background: rgba(0,246,255,.15);
+  border-color: var(--neon1);
+}
+
+.quiz-option.correct {
+  background: rgba(16,185,129,.2);
+  border-color: var(--success);
+}
+
+.quiz-option.incorrect {
+  background: rgba(239,68,68,.2);
+  border-color: var(--danger);
+}
+
+.quiz-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.quiz-btn {
+  background: linear-gradient(135deg, var(--neon1), var(--neon3));
+  color: var(--bg);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.quiz-btn:hover {
+  transform: scale(1.05);
+}
+
+.quiz-result {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--neon1);
+  display: none;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px;
+  background: rgba(0,0,0,.3);
+  margin-top: 60px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.footer-links a {
+  color: var(--neon1);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 15px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .nav-list {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0 20px;
+  }
+  
+  section {
+    padding: 40px 5%;
+  }
+  
+  .progress-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .questions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .gate-container {
+    flex-direction: column;
+  }
+  
+  .circuit-canvas {
+    height: 200px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">BTech LMS</div>
+  <div class="nav-controls">
+    <button class="mode-toggle" id="modeToggle" title="Toggle Dark/Light Mode">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button class="print-btn" id="printBtn" title="Print Notes">
+      <i class="fas fa-print"></i>
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div>
+    <h1>Digital Electronics</h1>
+    <p class="hero-subtitle">Master the fundamentals of digital systems, logic gates, sequential circuits, and Boolean algebra with interactive simulations and practical examples.</p>
+    
+    <div class="progress-info">
+      <div class="progress-item">
+        <div class="progress-value">82%</div>
+        <div class="progress-label">Your Progress</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-value">12</div>
+        <div class="progress-label">Topics Covered</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-value">8</div>
+        <div class="progress-label">Logic Gates</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-value">25+</div>
+        <div class="progress-label">Practice Problems</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Content Navigation -->
+<div class="content-nav">
+  <ul class="nav-list">
+    <li><a href="#basics" class="active"><i class="fas fa-binary"></i> Basics</a></li>
+    <li><a href="#gates"><i class="fas fa-project-diagram"></i> Logic Gates</a></li>
+    <li><a href="#boolean"><i class="fas fa-calculator"></i> Boolean Algebra</a></li>
+    <li><a href="#combinational"><i class="fas fa-sitemap"></i> Combinational</a></li>
+    <li><a href="#sequential"><i class="fas fa-history"></i> Sequential</a></li>
+    <li><a href="#questions"><i class="fas fa-question-circle"></i> Q&A</a></li>
+    <li><a href="#quiz"><i class="fas fa-brain"></i> Quiz</a></li>
+  </ul>
+</div>
+
+<!-- BASICS SECTION -->
+<section id="basics">
+  <h2>Digital Electronics Fundamentals</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fas fa-microchip"></i> What is Digital Electronics?</h3>
+      <p>Digital electronics deals with systems that use discrete voltage levels (typically 0V and 5V) to represent binary values (0 and 1). Unlike analog electronics, digital systems are immune to noise and distortion.</p>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-sort-numeric-up"></i> Number Systems</h3>
+      <ul>
+        <li><strong>Binary:</strong> Base-2 (0,1) - Fundamental system for digital circuits</li>
+        <li><strong>Decimal:</strong> Base-10 (0-9) - Human-readable system</li>
+        <li><strong>Octal:</strong> Base-8 (0-7) - Used in some computer systems</li>
+        <li><strong>Hexadecimal:</strong> Base-16 (0-9, A-F) - Compact representation of binary</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-bolt"></i> Logic Levels & Voltage</h3>
+      <ul>
+        <li><strong>TTL Logic:</strong> 0V = Logic 0, 5V = Logic 1</li>
+        <li><strong>CMOS Logic:</strong> 0V-1/3Vdd = Logic 0, 2/3Vdd-Vdd = Logic 1</li>
+        <li><strong>Noise Margin:</strong> Difference between actual and threshold voltages</li>
+        <li><strong>Fan-out:</strong> Maximum number of inputs a gate can drive</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Number System Converter -->
+  <div class="converter">
+    <h3 style="color: var(--neon1); margin-bottom: 20px; text-align: center;">
+      <i class="fas fa-exchange-alt"></i> Number System Converter
+    </h3>
+    
+    <div class="converter-inputs">
+      <div class="converter-group">
+        <label for="binaryInput">Binary (Base-2)</label>
+        <input type="text" id="binaryInput" placeholder="e.g., 1010" maxlength="16">
+      </div>
+      
+      <div class="converter-group">
+        <label for="decimalInput">Decimal (Base-10)</label>
+        <input type="number" id="decimalInput" placeholder="e.g., 10">
+      </div>
+      
+      <div class="converter-group">
+        <label for="hexInput">Hexadecimal (Base-16)</label>
+        <input type="text" id="hexInput" placeholder="e.g., A" maxlength="4">
+      </div>
+      
+      <div class="converter-group">
+        <label for="octalInput">Octal (Base-8)</label>
+        <input type="text" id="octalInput" placeholder="e.g., 12" maxlength="6">
+      </div>
+    </div>
+    
+    <div class="converter-result" id="converterResult">
+      <p style="text-align: center; opacity: 0.8;">Enter a value in any field to see conversions</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIC GATES SECTION -->
+<section id="gates">
+  <h2>Logic Gates & Operations</h2>
+  
+  <div class="gate-simulator">
+    <h3 style="color: var(--neon1); margin-bottom: 20px; text-align: center;">
+      <i class="fas fa-gamepad"></i> Interactive Logic Gate Simulator
+    </h3>
+    
+    <div class="gate-controls">
+      <button class="gate-btn active" data-gate="AND">AND Gate</button>
+      <button class="gate-btn" data-gate="OR">OR Gate</button>
+      <button class="gate-btn" data-gate="NOT">NOT Gate</button>
+      <button class="gate-btn" data-gate="NAND">NAND Gate</button>
+      <button class="gate-btn" data-gate="NOR">NOR Gate</button>
+      <button class="gate-btn" data-gate="XOR">XOR Gate</button>
+      <button class="gate-btn" data-gate="XNOR">XNOR Gate</button>
+    </div>
+    
+    <div class="gate-container">
+      <div class="gate-inputs">
+        <div class="input-switch off" id="inputA">A=0</div>
+        <div class="input-switch off" id="inputB">B=0</div>
+      </div>
+      
+      <div class="gate-symbol" id="gateSymbol">AND</div>
+      
+      <div class="gate-output">
+        <div class="output-led off" id="outputY">Y=0</div>
+      </div>
+    </div>
+    
+    <div class="truth-table">
+      <h4 style="color: var(--neon1); margin-bottom: 15px;">Truth Table</h4>
+      <table id="truthTable">
+        <thead>
+          <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="zero">0</td>
+            <td class="zero">0</td>
+            <td class="zero" id="tt00">0</td>
+          </tr>
+          <tr>
+            <td class="zero">0</td>
+            <td class="one">1</td>
+            <td class="zero" id="tt01">0</td>
+          </tr>
+          <tr>
+            <td class="one">1</td>
+            <td class="zero">0</td>
+            <td class="zero" id="tt10">0</td>
+          </tr>
+          <tr>
+            <td class="one">1</td>
+            <td class="one">1</td>
+            <td class="zero" id="tt11">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fas fa-android"></i> Basic Gates</h3>
+      <ul>
+        <li><strong>AND:</strong> Output=1 only if ALL inputs=1</li>
+        <li><strong>OR:</strong> Output=1 if ANY input=1</li>
+        <li><strong>NOT:</strong> Output=inverse of input</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-code-branch"></i> Universal Gates</h3>
+      <ul>
+        <li><strong>NAND:</strong> NOT + AND - Can implement any logic function</li>
+        <li><strong>NOR:</strong> NOT + OR - Can implement any logic function</li>
+        <li>Any digital circuit can be built using only NAND or only NOR gates</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-random"></i> Special Gates</h3>
+      <ul>
+        <li><strong>XOR:</strong> Output=1 if inputs are DIFFERENT</li>
+        <li><strong>XNOR:</strong> Output=1 if inputs are SAME</li>
+        <li>Used in parity checking, arithmetic circuits</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BOOLEAN ALGEBRA SECTION -->
+<section id="boolean">
+  <h2>Boolean Algebra & Simplification</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fas fa-balance-scale"></i> Boolean Laws</h3>
+      <ul>
+        <li><strong>Commutative:</strong> A+B = B+A, A·B = B·A</li>
+        <li><strong>Associative:</strong> (A+B)+C = A+(B+C)</li>
+        <li><strong>Distributive:</strong> A·(B+C) = A·B + A·C</li>
+        <li><strong>Identity:</strong> A+0 = A, A·1 = A</li>
+        <li><strong>Complement:</strong> A+A' = 1, A·A' = 0</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-theater-masks"></i> De Morgan's Theorems</h3>
+      <ul>
+        <li>(A+B)' = A'·B'</li>
+        <li>(A·B)' = A'+B'</li>
+        <li>Convert AND to OR and vice versa</li>
+        <li>Essential for NAND/NOR implementations</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-filter"></i> Simplification Methods</h3>
+      <ul>
+        <li><strong>Boolean Algebra:</strong> Using laws and theorems</li>
+        <li><strong>Karnaugh Maps:</strong> Visual simplification for 2-6 variables</li>
+        <li><strong>Quine-McCluskey:</strong> Tabular method for many variables</li>
+        <li><strong>Logic Minimization Software:</strong> Espresso algorithm</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="card">
+    <h3><i class="fas fa-map"></i> Karnaugh Map Example</h3>
+    <div style="overflow-x: auto; margin-top: 20px;">
+      <table style="border-collapse: collapse; margin: 0 auto; border: 2px solid var(--neon1);">
+        <tr>
+          <th style="padding: 15px; background: rgba(0,246,255,.1);" colspan="5">K-Map for F(A,B,C) = Σ(0,2,4,5,6)</th>
+        </tr>
+        <tr>
+          <th style="padding: 10px; background: rgba(255,255,255,.1);">AB\C</th>
+          <th style="padding: 10px; background: rgba(255,255,255,.1);">0</th>
+          <th style="padding: 10px; background: rgba(255,255,255,.1);">1</th>
+        </tr>
+        <tr>
+          <td style="padding: 10px; background: rgba(255,255,255,.05);">00</td>
+          <td style="padding: 10px; background: rgba(0,255,136,.3); text-align: center;">1</td>
+          <td style="padding: 10px; background: rgba(255,68,68,.3); text-align: center;">0</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; background: rgba(255,255,255,.05);">01</td>
+          <td style="padding: 10px; background: rgba(0,255,136,.3); text-align: center;">1</td>
+          <td style="padding: 10px; background: rgba(255,68,68,.3); text-align: center;">0</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; background: rgba(255,255,255,.05);">11</td>
+          <td style="padding: 10px; background: rgba(255,68,68,.3); text-align: center;">0</td>
+          <td style="padding: 10px; background: rgba(255,68,68,.3); text-align: center;">0</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; background: rgba(255,255,255,.05);">10</td>
+          <td style="padding: 10px; background: rgba(0,255,136,.3); text-align: center;">1</td>
+          <td style="padding: 10px; background: rgba(0,255,136,.3); text-align: center;">1</td>
+        </tr>
+      </table>
+    </div>
+    <p style="margin-top: 15px; text-align: center;"><strong>Simplified Expression:</strong> F = A'C' + B'C' + AB'</p>
+  </div>
+</section>
+
+<!-- COMBINATIONAL CIRCUITS SECTION -->
+<section id="combinational">
+  <h2>Combinational Circuits</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fas fa-calculator"></i> Arithmetic Circuits</h3>
+      <ul>
+        <li><strong>Half Adder:</strong> Adds 2 bits (Sum, Carry)</li>
+        <li><strong>Full Adder:</strong> Adds 3 bits (including carry-in)</li>
+        <li><strong>Ripple Carry Adder:</strong> Chain of full adders</li>
+        <li><strong>Carry Lookahead Adder:</strong> Faster parallel addition</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-random"></i> Data Selectors</h3>
+      <ul>
+        <li><strong>Multiplexer (MUX):</strong> Selects one of many inputs</li>
+        <li><strong>Demultiplexer (DEMUX):</strong> Routes input to one of many outputs</li>
+        <li>2^n inputs, n select lines, 1 output (MUX)</li>
+        <li>1 input, n select lines, 2^n outputs (DEMUX)</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-barcode"></i> Code Converters</h3>
+      <ul>
+        <li><strong>Encoder:</strong> 2^n inputs to n outputs</li>
+        <li><strong>Decoder:</strong> n inputs to 2^n outputs</li>
+        <li><strong>Priority Encoder:</strong> Handles multiple active inputs</li>
+        <li><strong>Seven-Segment Decoder:</strong> Drives display panels</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Circuit Simulator -->
+  <div class="circuit-simulator">
+    <h3 style="color: var(--neon1); margin-bottom: 20px; text-align: center;">
+      <i class="fas fa-project-diagram"></i> Half Adder Circuit
+    </h3>
+    
+    <div class="circuit-toolbar">
+      <button class="circuit-tool" onclick="addGate('AND')">AND Gate</button>
+      <button class="circuit-tool" onclick="addGate('XOR')">XOR Gate</button>
+      <button class="circuit-tool" onclick="addGate('Input')">Input</button>
+      <button class="circuit-tool" onclick="addGate('Output')">Output</button>
+      <button class="circuit-tool" onclick="clearCircuit()">Clear</button>
+      <button class="circuit-tool" onclick="simulateCircuit()">Simulate</button>
+    </div>
+    
+    <div class="circuit-canvas" id="circuitCanvas">
+      <!-- Circuit elements will be added here dynamically -->
+      <div style="position: absolute; top: 50px; left: 100px;" class="circuit-element" data-type="input" data-value="0">
+        Input A
+      </div>
+      <div style="position: absolute; top: 150px; left: 100px;" class="circuit-element" data-type="input" data-value="0">
+        Input B
+      </div>
+      <div style="position: absolute; top: 80px; left: 250px;" class="circuit-element" data-type="XOR">
+        XOR
+      </div>
+      <div style="position: absolute; top: 120px; left: 250px;" class="circuit-element" data-type="AND">
+        AND
+      </div>
+      <div style="position: absolute; top: 80px; left: 400px;" class="circuit-element" data-type="output">
+        Sum
+      </div>
+      <div style="position: absolute; top: 120px; left: 400px;" class="circuit-element" data-type="output">
+        Carry
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <p><strong>Half Adder Logic:</strong> Sum = A ⊕ B, Carry = A · B</p>
+      <p style="opacity: 0.8;">Drag elements to rearrange. Click inputs to toggle values.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEQUENTIAL CIRCUITS SECTION -->
+<section id="sequential">
+  <h2>Sequential Circuits</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fas fa-memory"></i> Flip-Flops</h3>
+      <ul>
+        <li><strong>SR Flip-Flop:</strong> Set-Reset basic memory</li>
+        <li><strong>JK Flip-Flop:</strong> Eliminates indeterminate state</li>
+        <li><strong>D Flip-Flop:</strong> Data/Delay - Stores 1 bit</li>
+        <li><strong>T Flip-Flop:</strong> Toggle - Changes state on clock</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-sort-numeric-down"></i> Counters</h3>
+      <ul>
+        <li><strong>Asynchronous:</strong> Ripple counters - Simple but slow</li>
+        <li><strong>Synchronous:</strong> All flip-flops clocked together</li>
+        <li><strong>Ring Counter:</strong> Circulating single 1</li>
+        <li><strong>Johnson Counter:</strong> Twisted ring counter</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3><i class="fas fa-sliders-h"></i> Registers</h3>
+      <ul>
+        <li><strong>SISO:</strong> Serial In, Serial Out</li>
+        <li><strong>SIPO:</strong> Serial In, Parallel Out</li>
+        <li><strong>PISO:</strong> Parallel In, Serial Out</li>
+        <li><strong>PIPO:</strong> Parallel In, Parallel Out</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="card">
+    <h3><i class="fas fa-history"></i> D Flip-Flop Timing Diagram</h3>
+    <div style="overflow-x: auto; margin-top: 20px;">
+      <div style="background: rgba(0,0,0,.5); padding: 20px; border-radius: 10px;">
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+          <div style="width: 100px; font-weight: 600; color: var(--neon1);">Clock:</div>
+          <div style="flex: 1; height: 20px; background: linear-gradient(90deg, 
+            var(--gate-on) 0%, var(--gate-on) 25%, 
+            var(--gate-off) 25%, var(--gate-off) 50%,
+            var(--gate-on) 50%, var(--gate-on) 75%,
+            var(--gate-off) 75%, var(--gate-off) 100%);"></div>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+          <div style="width: 100px; font-weight: 600; color: var(--neon1);">Data (D):</div>
+          <div style="flex: 1; height: 20px; background: linear-gradient(90deg, 
+            var(--gate-on) 0%, var(--gate-on) 40%, 
+            var(--gate-off) 40%, var(--gate-off) 60%,
+            var(--gate-on) 60%, var(--gate-on) 100%);"></div>
+        </div>
+        <div style="display: flex; align-items: center;">
+          <div style="width: 100px; font-weight: 600; color: var(--neon1);">Output (Q):</div>
+          <div style="flex: 1; height: 20px; background: linear-gradient(90deg, 
+            var(--gate-off) 0%, var(--gate-off) 25%, 
+            var(--gate-on) 25%, var(--gate-on) 65%,
+            var(--gate-off) 65%, var(--gate-off) 100%);"></div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 15px; text-align: center;">
+      <strong>Operation:</strong> Output Q follows input D at positive clock edge. 
+      Changes only when clock transitions from 0→1.
+    </p>
+  </div>
+</section>
+
+<!-- QUESTIONS SECTION -->
+<section id="questions">
+  <h2>Interview Questions & Answers</h2>
+  
+  <div class="questions-grid" id="questionsGrid">
+    <!-- Questions will be populated by JavaScript -->
+  </div>
+  
+  <div class="answer-container" id="answerContainer">
+    <div class="card">
+      <h3 id="answerQuestion"></h3>
+      <div id="answerContent"></div>
+      <div class="question-tags" id="answerTags"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ SECTION -->
+<section id="quiz">
+  <h2>Digital Electronics Knowledge Test</h2>
+  
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h3>Digital Electronics Quiz</h3>
+      <p>Score: <span id="quizScore">0</span>/5</p>
+    </div>
+    
+    <div id="quizContent">
+      <div class="quiz-question" id="quizQuestion">Which logic gate output is 1 only when all inputs are 1?</div>
+      
+      <div class="quiz-options" id="quizOptions">
+        <!-- Options will be populated by JavaScript -->
+      </div>
+      
+      <div class="quiz-controls">
+        <button class="quiz-btn" id="prevBtn" disabled>Previous</button>
+        <button class="quiz-btn" id="nextBtn">Next</button>
+      </div>
+    </div>
+    
+    <div class="quiz-result" id="quizResult">
+      <!-- Result will be shown here -->
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© BTech LMS • Digital Electronics • Complete Academic Resource</p>
+  <div class="footer-links">
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="#"><i class="fas fa-download"></i> Download All</a>
+    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="#"><i class="fas fa-share-alt"></i> Share</a>
+  </div>
+</footer>
+
+<script>
+// Questions Data
+const questions = [
+  {
+    id: 1,
+    question: "What is the difference between combinational and sequential circuits?",
+    answer: "<strong>Combinational Circuits:</strong><br>• Output depends ONLY on present inputs<br>• No memory elements<br>• Examples: Adders, Multiplexers, Decoders<br><br><strong>Sequential Circuits:</strong><br>• Output depends on present inputs AND previous state<br>• Contains memory elements (Flip-Flops)<br>• Examples: Counters, Registers, Finite State Machines<br><br><strong>Key Difference:</strong> Sequential circuits have memory, combinational circuits don't.",
+    tags: ["Combinational", "Sequential", "Circuits"],
+    category: "Basic"
+  },
+  {
+    id: 2,
+    question: "Explain the working of a JK Flip-Flop.",
+    answer: "<strong>JK Flip-Flop</strong> eliminates the indeterminate state of SR flip-flop.<br><br><strong>Truth Table:</strong><br>J K | Q(t+1)<br>0 0 | Q(t)  (No change)<br>0 1 | 0      (Reset)<br>1 0 | 1      (Set)<br>1 1 | Q'(t) (Toggle)<br><br><strong>Features:</strong><br>• No invalid state (unlike SR FF)<br>• Toggle capability when J=K=1<br>• Can implement all other flip-flops<br>• Used in counters and registers",
+    tags: ["Flip-Flop", "JK", "Sequential"],
+    category: "Sequential"
+  },
+  {
+    id: 3,
+    question: "What is a Karnaugh Map? How is it used for simplification?",
+    answer: "<strong>Karnaugh Map (K-Map)</strong> is a graphical method for simplifying Boolean expressions.<br><br><strong>Steps for Simplification:</strong><br>1. Create K-Map with variables as rows/columns<br>2. Plot 1's for minterms or 0's for maxterms<br>3. Group adjacent 1's in powers of 2 (1,2,4,8...)<br>4. Write simplified expression from groups<br><br><strong>Rules:</strong><br>• Groups must be rectangular<br>• Wrap-around edges allowed<br>• Overlapping groups allowed<br>• Each group should be as large as possible<br><br><strong>Advantage:</strong> Visual, good for 2-6 variables.",
+    tags: ["K-Map", "Simplification", "Boolean"],
+    category: "Boolean Algebra"
+  },
+  {
+    id: 4,
+    question: "Compare TTL and CMOS logic families.",
+    answer: "<strong>TTL (Transistor-Transistor Logic):</strong><br>• Uses bipolar transistors<br>• Fast switching speed<br>• Higher power consumption<br>• 5V supply standard<br>• Good noise immunity<br><br><strong>CMOS (Complementary MOS):</strong><br>• Uses MOSFETs<br>• Very low power consumption<br>• Slower than TTL (modern CMOS is fast)<br>• Wide voltage range (3-15V)<br>• High density integration<br><br><strong>Modern Preference:</strong> CMOS dominates due to low power, high density.",
+    tags: ["TTL", "CMOS", "IC Families"],
+    category: "Advanced"
+  },
+  {
+    id: 5,
+    question: "What is a multiplexer? Explain 4:1 MUX with diagram.",
+    answer: "<strong>Multiplexer (MUX)</strong> selects one of many inputs to route to single output.<br><br><strong>4:1 MUX:</strong><br>• 4 data inputs (I0, I1, I2, I3)<br>• 2 select lines (S1, S0)<br>• 1 output (Y)<br><br><strong>Selection Logic:</strong><br>S1 S0 | Output<br>0  0  | I0<br>0  1  | I1<br>1  0  | I2<br>1  1  | I3<br><br><strong>Boolean Expression:</strong><br>Y = S1'S0'I0 + S1'S0I1 + S1S0'I2 + S1S0I3<br><br><strong>Applications:</strong> Data routing, function generators, parallel-to-serial conversion.",
+    tags: ["Multiplexer", "MUX", "Combinational"],
+    category: "Combinational"
+  },
+  {
+    id: 6,
+    question: "Explain the concept of fan-out and fan-in in digital circuits.",
+    answer: "<strong>Fan-out:</strong> Maximum number of standard loads a gate output can drive without degradation.<br>• For TTL: Typically 10<br>• For CMOS: Depends on frequency<br>• Exceeding fan-out causes voltage drop, slow rise time<br><br><strong>Fan-in:</strong> Number of inputs a gate can accept.<br>• Standard gates: 2, 3, or 4 inputs<br>• Higher fan-in increases gate complexity<br><br><strong>Fan-out Calculation:</strong><br>Fan-out = I<sub>OH</sub>/I<sub>IH</sub> (for HIGH) or I<sub>OL</sub>/I<sub>IL</sub> (for LOW)<br>where I<sub>OH</sub> = output high current, I<sub>IH</sub> = input high current",
+    tags: ["Fan-out", "Fan-in", "Parameters"],
+    category: "Advanced"
+  },
+  {
+    id: 7,
+    question: "What are universal gates? Why are they called universal?",
+    answer: "<strong>Universal Gates:</strong> NAND and NOR gates are called universal because ANY Boolean function can be implemented using ONLY NAND gates or ONLY NOR gates.<br><br><strong>Proof:</strong><br>1. <strong>Using only NAND:</strong><br>   • NOT: NAND with both inputs same<br>   • AND: NAND followed by NOT<br>   • OR: Using De Morgan's (A+B = (A'B')')<br><br>2. <strong>Using only NOR:</strong><br>   • NOT: NOR with both inputs same<br>   • OR: NOR followed by NOT<br>   • AND: Using De Morgan's (AB = (A'+B')')<br><br><strong>Significance:</strong> Simplifies IC manufacturing - only need one gate type.",
+    tags: ["NAND", "NOR", "Universal Gates"],
+    category: "Logic Gates"
+  },
+  {
+    id: 8,
+    question: "Describe the working of a ripple carry adder with its limitations.",
+    answer: "<strong>Ripple Carry Adder:</strong> Chain of full adders where carry ripples from LSB to MSB.<br><br><strong>Structure:</strong><br>• n full adders for n-bit addition<br>• Carry-out of stage i connects to carry-in of stage i+1<br>• Simple but slow<br><br><strong>Delay Calculation:</strong><br>Total delay = n × (gate delay per full adder)<br>Worst case: Carry must ripple through all stages<br><br><strong>Limitations:</strong><br>1. <strong>Speed:</strong> Slow for large n (e.g., 32-bit)<br>2. <strong>Propagation Delay:</strong> Increases linearly with n<br><br><strong>Solution:</strong> Use Carry Lookahead Adder (CLA) for speed.",
+    tags: ["Adder", "Ripple Carry", "Arithmetic"],
+    category: "Combinational"
+  }
+];
+
+// Quiz Data
+const quizQuestions = [
+  {
+    question: "Which logic gate output is 1 only when all inputs are 1?",
+    options: ["OR Gate", "AND Gate", "NOR Gate", "XOR Gate"],
+    answer: 1,
+    explanation: "AND gate produces output 1 only when all inputs are 1."
+  },
+  {
+    question: "How many select lines does an 8:1 multiplexer have?",
+    options: ["2", "3", "4", "8"],
+    answer: 1,
+    explanation: "2^n = 8 → n = 3 select lines for 8:1 MUX."
+  },
+  {
+    question: "Which flip-flop has toggle functionality?",
+    options: ["SR Flip-Flop", "D Flip-Flop", "JK Flip-Flop", "All of above"],
+    answer: 2,
+    explanation: "JK flip-flop toggles when J=K=1."
+  },
+  {
+    question: "What is the binary equivalent of hexadecimal 'F'?",
+    options: ["1110", "1111", "1010", "1100"],
+    answer: 1,
+    explanation: "Hexadecimal F = Decimal 15 = Binary 1111."
+  },
+  {
+    question: "Which is NOT a universal gate?",
+    options: ["NAND", "NOR", "XOR", "Both NAND and NOR"],
+    answer: 2,
+    explanation: "NAND and NOR are universal gates; XOR is not."
+  }
+];
+
+// DOM Elements
+const questionsGrid = document.getElementById('questionsGrid');
+const answerContainer = document.getElementById('answerContainer');
+const answerQuestion = document.getElementById('answerQuestion');
+const answerContent = document.getElementById('answerContent');
+const answerTags = document.getElementById('answerTags');
+const quizQuestion = document.getElementById('quizQuestion');
+const quizOptions = document.getElementById('quizOptions');
+const quizScore = document.getElementById('quizScore');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const quizResult = document.getElementById('quizResult');
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+const navLinks = document.querySelectorAll('.nav-list a');
+const gateBtns = document.querySelectorAll('.gate-btn');
+const inputSwitches = document.querySelectorAll('.input-switch');
+const binaryInput = document.getElementById('binaryInput');
+const decimalInput = document.getElementById('decimalInput');
+const hexInput = document.getElementById('hexInput');
+const octalInput = document.getElementById('octalInput');
+const converterResult = document.getElementById('converterResult');
+
+// Logic Gate Data
+const gateOperations = {
+  'AND': (a, b) => a && b,
+  'OR': (a, b) => a || b,
+  'NOT': (a, b) => !a,
+  'NAND': (a, b) => !(a && b),
+  'NOR': (a, b) => !(a || b),
+  'XOR': (a, b) => a !== b,
+  'XNOR': (a, b) => a === b
+};
+
+const gateSymbols = {
+  'AND': '&',
+  'OR': '≥1',
+  'NOT': '1',
+  'NAND': '&',
+  'NOR': '≥1',
+  'XOR': '=1',
+  'XNOR': '='
+};
+
+let currentGate = 'AND';
+let inputA = 0;
+let inputB = 0;
+
+// Initialize Questions
+function initQuestions() {
+  questionsGrid.innerHTML = '';
+  
+  questions.forEach((q, index) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.innerHTML = `
+      <div class="question-number">${index + 1}</div>
+      <div class="question-text">${q.question}</div>
+      <div class="question-tags">
+        ${q.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        <span class="tag">${q.category}</span>
+      </div>
+    `;
+    
+    card.addEventListener('click', () => showAnswer(q));
+    questionsGrid.appendChild(card);
+  });
+}
+
+// Show Answer
+function showAnswer(question) {
+  document.querySelectorAll('.question-card').forEach(card => {
+    card.classList.remove('active');
+  });
+  
+  const cards = document.querySelectorAll('.question-card');
+  cards[questions.findIndex(q => q.id === question.id)].classList.add('active');
+  
+  answerQuestion.textContent = `Q${question.id}: ${question.question}`;
+  answerContent.innerHTML = `<p>${question.answer}</p>`;
+  answerTags.innerHTML = `
+    ${question.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+    <span class="tag">${question.category}</span>
+  `;
+  
+  answerContainer.classList.add('show');
+  answerContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Quiz Logic
+let currentQuizIndex = 0;
+let userAnswers = new Array(quizQuestions.length).fill(null);
+let score = 0;
+
+function initQuiz() {
+  loadQuizQuestion(currentQuizIndex);
+  
+  prevBtn.addEventListener('click', () => {
+    if (currentQuizIndex > 0) {
+      currentQuizIndex--;
+      loadQuizQuestion(currentQuizIndex);
+    }
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    if (currentQuizIndex < quizQuestions.length - 1) {
+      currentQuizIndex++;
+      loadQuizQuestion(currentQuizIndex);
+    } else {
+      showQuizResult();
+    }
+  });
+}
+
+function loadQuizQuestion(index) {
+  const q = quizQuestions[index];
+  quizQuestion.textContent = `Question ${index + 1}: ${q.question}`;
+  
+  prevBtn.disabled = index === 0;
+  nextBtn.textContent = index === quizQuestions.length - 1 ? 'Submit' : 'Next';
+  
+  quizOptions.innerHTML = '';
+  
+  q.options.forEach((option, optIndex) => {
+    const optionDiv = document.createElement('div');
+    optionDiv.className = 'quiz-option';
+    if (userAnswers[index] === optIndex) {
+      optionDiv.classList.add('selected');
+    }
+    
+    optionDiv.textContent = `${String.fromCharCode(65 + optIndex)}. ${option}`;
+    
+    optionDiv.addEventListener('click', () => {
+      document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      
+      optionDiv.classList.add('selected');
+      userAnswers[index] = optIndex;
+      
+      updateScore();
+    });
+    
+    quizOptions.appendChild(optionDiv);
+  });
+}
+
+function updateScore() {
+  score = 0;
+  userAnswers.forEach((answer, index) => {
+    if (answer === quizQuestions[index].answer) {
+      score++;
+    }
+  });
+  quizScore.textContent = score;
+}
+
+function showQuizResult() {
+  document.getElementById('quizContent').style.display = 'none';
+  
+  let resultHTML = `<h3>Quiz Completed!</h3>`;
+  resultHTML += `<p>Your Score: <strong>${score}/${quizQuestions.length}</strong></p>`;
+  resultHTML += `<p>Percentage: <strong>${(score/quizQuestions.length*100).toFixed(1)}%</strong></p>`;
+  
+  if (score === quizQuestions.length) {
+    resultHTML += `<p style="color:var(--success)">Excellent! Perfect score!</p>`;
+  } else if (score >= quizQuestions.length * 0.7) {
+    resultHTML += `<p style="color:var(--success)">Good job! Well done!</p>`;
+  } else if (score >= quizQuestions.length * 0.5) {
+    resultHTML += `<p style="color:var(--warning)">Average score. Keep practicing!</p>`;
+  } else {
+    resultHTML += `<p style="color:var(--danger)">Needs improvement. Review the materials!</p>`;
+  }
+  
+  resultHTML += `<button class="quiz-btn" onclick="resetQuiz()" style="margin-top:20px">Retake Quiz</button>`;
+  
+  quizResult.innerHTML = resultHTML;
+  quizResult.style.display = 'block';
+}
+
+function resetQuiz() {
+  currentQuizIndex = 0;
+  userAnswers = new Array(quizQuestions.length).fill(null);
+  score = 0;
+  quizScore.textContent = '0';
+  
+  document.getElementById('quizContent').style.display = 'block';
+  quizResult.style.display = 'none';
+  
+  loadQuizQuestion(0);
+}
+
+// Logic Gate Simulator Functions
+gateBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    gateBtns.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    currentGate = this.dataset.gate;
+    document.getElementById('gateSymbol').textContent = gateSymbols[currentGate];
+    updateGateOutput();
+  });
+});
+
+inputSwitches.forEach(switchEl => {
+  switchEl.addEventListener('click', function() {
+    if (this.id === 'inputA') {
+      inputA = inputA === 0 ? 1 : 0;
+      this.textContent = `A=${inputA}`;
+      this.classList.toggle('on');
+      this.classList.toggle('off');
+    } else if (this.id === 'inputB') {
+      inputB = inputB === 0 ? 1 : 0;
+      this.textContent = `B=${inputB}`;
+      this.classList.toggle('on');
+      this.classList.toggle('off');
+    }
+    updateGateOutput();
+  });
+});
+
+function updateGateOutput() {
+  const output = gateOperations[currentGate](inputA, inputB);
+  const outputLED = document.getElementById('outputY');
+  outputLED.textContent = `Y=${output ? 1 : 0}`;
+  
+  if (output) {
+    outputLED.classList.remove('off');
+    outputLED.classList.add('on');
+  } else {
+    outputLED.classList.remove('on');
+    outputLED.classList.add('off');
+  }
+  
+  // Update truth table
+  updateTruthTable();
+}
+
+function updateTruthTable() {
+  const combinations = [
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+  ];
+  
+  combinations.forEach(([a, b], index) => {
+    const output = gateOperations[currentGate](a, b);
+    const cellId = `tt${a}${b}`;
+    const cell = document.getElementById(cellId);
+    cell.textContent = output ? '1' : '0';
+    cell.className = output ? 'one' : 'zero';
+  });
+}
+
+// Number System Converter Functions
+function updateConverter(value, source) {
+  let decimalValue;
+  
+  try {
+    switch(source) {
+      case 'binary':
+        if (!/^[01]+$/.test(value) && value !== '') return;
+        decimalValue = parseInt(value, 2);
+        break;
+      case 'decimal':
+        decimalValue = parseInt(value) || 0;
+        break;
+      case 'hex':
+        if (!/^[0-9A-Fa-f]+$/.test(value) && value !== '') return;
+        decimalValue = parseInt(value, 16);
+        break;
+      case 'octal':
+        if (!/^[0-7]+$/.test(value) && value !== '') return;
+        decimalValue = parseInt(value, 8);
+        break;
+    }
+    
+    if (isNaN(decimalValue)) decimalValue = 0;
+    
+    // Update other fields
+    if (source !== 'binary') binaryInput.value = decimalValue.toString(2);
+    if (source !== 'decimal') decimalInput.value = decimalValue;
+    if (source !== 'hex') hexInput.value = decimalValue.toString(16).toUpperCase();
+    if (source !== 'octal') octalInput.value = decimalValue.toString(8);
+    
+    // Update result display
+    converterResult.innerHTML = `
+      <p><strong>Decimal:</strong> ${decimalValue}<br>
+      <strong>Binary:</strong> ${decimalValue.toString(2)}<br>
+      <strong>Hexadecimal:</strong> ${decimalValue.toString(16).toUpperCase()}<br>
+      <strong>Octal:</strong> ${decimalValue.toString(8)}</p>
+    `;
+  } catch (e) {
+    console.error('Conversion error:', e);
+  }
+}
+
+// Event listeners for converter
+binaryInput.addEventListener('input', (e) => updateConverter(e.target.value, 'binary'));
+decimalInput.addEventListener('input', (e) => updateConverter(e.target.value, 'decimal'));
+hexInput.addEventListener('input', (e) => updateConverter(e.target.value.toUpperCase(), 'hex'));
+octalInput.addEventListener('input', (e) => updateConverter(e.target.value, 'octal'));
+
+// Circuit Simulator Functions (Basic)
+function addGate(type) {
+  const canvas = document.getElementById('circuitCanvas');
+  const count = canvas.children.length;
+  const element = document.createElement('div');
+  element.className = 'circuit-element';
+  element.textContent = type;
+  element.dataset.type = type;
+  element.style.position = 'absolute';
+  element.style.top = `${50 + (count * 30)}px`;
+  element.style.left = `${100 + (count * 20)}px`;
+  
+  if (type === 'input' || type === 'output') {
+    element.dataset.value = '0';
+  }
+  
+  element.addEventListener('click', function(e) {
+    if (this.dataset.type === 'input') {
+      const current = parseInt(this.dataset.value);
+      const newValue = current === 0 ? 1 : 0;
+      this.dataset.value = newValue;
+      this.textContent = `${this.textContent.split('=')[0]}=${newValue}`;
+      this.style.background = newValue === 1 ? 'rgba(0,255,136,.3)' : 'rgba(255,68,68,.3)';
+      e.stopPropagation();
+    }
+  });
+  
+  makeDraggable(element);
+  canvas.appendChild(element);
+}
+
+function clearCircuit() {
+  const canvas = document.getElementById('circuitCanvas');
+  canvas.innerHTML = '';
+}
+
+function simulateCircuit() {
+  alert('Circuit simulation would run here in a full implementation. This is a visual demonstration.');
+}
+
+function makeDraggable(element) {
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  
+  element.onmousedown = dragMouseDown;
+  
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+  
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    element.style.top = (element.offsetTop - pos2) + "px";
+    element.style.left = (element.offsetLeft - pos1) + "px";
+  }
+  
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+// Smooth Navigation
+navLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    navLinks.forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+    
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Dark/Light Mode Toggle
+const modeToggle = document.getElementById('modeToggle');
+modeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  
+  if (document.body.classList.contains('light-mode')) {
+    modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    modeToggle.title = 'Switch to Dark Mode';
+  } else {
+    modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    modeToggle.title = 'Switch to Light Mode';
+  }
+});
+
+// Print Functionality
+document.getElementById('printBtn').addEventListener('click', () => {
+  window.print();
+});
+
+// Initialize everything when page loads
+document.addEventListener('DOMContentLoaded', () => {
+  initQuestions();
+  initQuiz();
+  updateGateOutput();
+  updateConverter('1010', 'binary');
+  
+  // Show first question answer by default
+  showAnswer(questions[0]);
+});
+</script>
+
+</body>
+</html>
